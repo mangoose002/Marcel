@@ -71,6 +71,7 @@ namespace Marcel{
 		int c;
 		//int threadnumber;
 		//int antialias;
+		//
 
 		SceneContext *context  = new SceneContext;
 

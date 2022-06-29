@@ -1,6 +1,7 @@
 
 #include "Utils/Utils.hh"
 #include "Core/Triangle.hh"
+#include "Core/Object.hh"
 #include "Core/SceneClient.hh"
 #include "Core/Raytrace.hh"
 
@@ -9,6 +10,10 @@
 
 double Marcel::Socket::time_spent_recv = 0;
 double Marcel::Socket::time_spent_send = 0;
+uint64_t Marcel::Objet::SuccessfulIntersectionNumber = 0;
+uint64_t Marcel::Objet::IntersectionNumber = 0;
+
+
 
 #include <iostream>
 #include <thread>

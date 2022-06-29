@@ -63,6 +63,8 @@ namespace Marcel{
 	}
 
 	int Triangle::Intersect(Tuple *CP, Droite *Dr) {
+		Objet::IntersectionNumber++;
+
 		double a = N.x * Dr->O.x + N.y * Dr->O.y + N.z * Dr->O.z - (N.x * A.x + N.y * A.y + A.z * N.z);
 		double b = N.x * Dr->D.x + N.y * Dr->D.y + N.z * Dr->D.z;
 
@@ -112,6 +114,8 @@ namespace Marcel{
 
 				(*CP).t   = t1;
 				(*CP).obj = this;
+
+				Objet::SuccessfulIntersectionNumber++;
 
 				return 1;
 			}

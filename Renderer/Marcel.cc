@@ -1,13 +1,18 @@
 
 #include "Utils/Utils.hh"
-#include "Core/Triangle.hh"
+//#include "Core/Triangle.hh"
 #include "Core/Scene.hh"
-#include "Core/Raytrace.hh"
+//#include "Core/Raytrace.hh"
+#include "Core/Object.hh"
 
 #include <iostream>
 #include <thread>
 using namespace std;
 using namespace Marcel;
+
+
+uint64_t Objet::SuccessfulIntersectionNumber = 0;
+uint64_t Objet::IntersectionNumber = 0;
 
 
 

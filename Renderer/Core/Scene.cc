@@ -624,6 +624,9 @@ void Scene::Start() {
 		cout << endl << "Total Time: " << (fm->tv_sec * 1000000 + fm->tv_usec - dm->tv_sec * 1000000 - dm->tv_usec) / 1000000.0 << endl;
 		cout << (ResX * ResY) / ((fm->tv_sec * 1000000 + fm->tv_usec - dm->tv_sec * 1000000 - dm->tv_usec) / 1000000.0) << " PPS" << endl;
 
+		cout << "Tried intersections:      " << Objet::IntersectionNumber << endl;
+		cout << "Successful intersections: " << Objet::SuccessfulIntersectionNumber << endl;
+
 		if (FrameNumber > 1)
 			cout << "\rDone:  " << i + 1 << endl;
 		else

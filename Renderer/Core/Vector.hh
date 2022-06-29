@@ -47,22 +47,5 @@ public:
 
 double   operator*(Vector, Vector); // Produit scalaire
 Vector   operator/(Vector, Vector); // Produit Vectoriel
-
-//Vector   operator*(Vector, double); // Produit par un scalaire
-//Vector   operator*(double, Vector);
-
-//Vector   operator+(Vector, Vector); // Addition
-//Vector   operator-(Vector, Vector); // Soustraction
-
-//                                              --> -->
-//Vector   operator+(Point, Point);  // Calcul de OP1+OP2
-//                                             --> --> --->
-//Vector   operator-(Point, Point);  //Calcul de OP1-OP2=P2P1
-
-//Point    operator+(Point, Vector); //Ajout d'un point et d'un vecteur
-//Point    operator-(Point, Vector); //Ajout d'un point et d'un vecteur
-
-//ostream& operator<<(ostream& , Vector);
-//ostream& operator<<(ostream& , Vector*);
 }
 #endif

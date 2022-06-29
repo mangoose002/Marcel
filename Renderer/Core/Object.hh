@@ -63,6 +63,9 @@ namespace Marcel{
         double z;
         double Z;
 
+	static uint64_t IntersectionNumber;
+	static uint64_t SuccessfulIntersectionNumber;
+
         Objet();
 
         virtual int    Intersect(Tuple*, Droite*) = 0;
