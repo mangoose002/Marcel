@@ -282,7 +282,6 @@ namespace Marcel{
 	}
 
 	string Utils::filepath(string filename) {
-		cout << filename << endl;
 		char *res = realpath(filename.c_str(), NULL);
 
 

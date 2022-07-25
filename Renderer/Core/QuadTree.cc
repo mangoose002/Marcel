@@ -14,47 +14,47 @@ namespace Marcel{
     QuadTree::QuadTree(int x, int X, int y, int Y): nTree(4){
         xmin       = x;        xmax       = X;
         ymin       = y;        ymax       = Y;
-        F          = NULL;
+        Root       = NULL;
 
         Level      = 0;
         Position   = 0;
         MAX_LEVEL  = 0;
     }
 
-    QuadTree::QuadTree(int level, int position, QuadTree* Father): nTree(4){
-        MAX_LEVEL  = Father->MAX_LEVEL;
+    QuadTree::QuadTree(int level, int position, QuadTree* _Root): nTree(4){
+        MAX_LEVEL  = _Root->MAX_LEVEL;
         Level      = level;
         Position   = position;
-        F          = Father;
+        Root       = _Root;
 
-        if (Father == NULL){ // Creation du premier Octree
+        if (_Root == NULL){ // Creating first Quadtree
             xmin = -2000; xmax =  2000;
             ymin = -2000; ymax =  2000;
         } else {
             switch (position) {
             case 0:
-                xmin = Father->xmin;
-                xmax = (Father->xmax + Father->xmin) / 2;
-                ymin = Father->ymin;
-                ymax = (Father->ymax + Father->ymin) / 2;
+                xmin = _Root->xmin;
+                xmax = (_Root->xmax + _Root->xmin) / 2;
+                ymin = _Root->ymin;
+                ymax = (_Root->ymax + _Root->ymin) / 2;
                 break;
             case 1:
-                xmin = (Father->xmin + Father->xmax) / 2;
-                xmax = Father->xmax;
-                ymin = Father->ymin;
-                ymax = (Father->ymax + Father->ymin) / 2;
+                xmin = (_Root->xmin + _Root->xmax) / 2;
+                xmax = _Root->xmax;
+                ymin = _Root->ymin;
+                ymax = (_Root->ymax + _Root->ymin) / 2;
                 break;
             case 2:
-                xmin = Father->xmin;
-                xmax = (Father->xmax + Father->xmin) / 2;
-                ymin = (Father->ymax + Father->ymin) / 2;
-                ymax = Father->ymax;
+                xmin = _Root->xmin;
+                xmax = (_Root->xmax + _Root->xmin) / 2;
+                ymin = (_Root->ymax + _Root->ymin) / 2;
+                ymax = _Root->ymax;
                 break;
             case 3:
-                xmin = (Father->xmin + Father->xmax) / 2;
-                xmax = Father->xmax;
-                ymin = (Father->ymax + Father->ymin) / 2;
-                ymax = Father->ymax;
+                xmin = (_Root->xmin + _Root->xmax) / 2;
+                xmax = _Root->xmax;
+                ymin = (_Root->ymax + _Root->ymin) / 2;
+                ymax = _Root->ymax;
                 break;
             }
         }

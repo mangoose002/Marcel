@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <jpeglib.h>
+#include <gif_lib.h>
 #include <setjmp.h>
 #include <math.h>
 #include <algorithm>
@@ -45,6 +46,8 @@ namespace Marcel{
 			return FLI_FORMAT;
 		} else if (Filename.substr(Filename.find_last_of(".") + 1) == "png") {
 			return PNG_FORMAT;
+		} else if (Filename.substr(Filename.find_last_of(".") + 1) == "gif") {
+			return GIF_FORMAT;
 		}
 
 		return -1;
@@ -53,6 +56,9 @@ namespace Marcel{
 	bool ImageUtils::readFile(string filename, Color ***File, int *XResolution, int *YResolution) {
 
 		switch (getFileExtension(filename)) {
+		case GIF_FORMAT:
+			return ImageUtils::readGIF(filename, File, XResolution, YResolution);
+			break;
 		case BMP_FORMAT:
 			return ImageUtils::readBMP(filename, File, XResolution, YResolution);
 			break;
@@ -72,30 +78,33 @@ namespace Marcel{
 			return ImageUtils::readPNG(filename, File, XResolution, YResolution);
 			break;
 		default:
-			cout << filename << " cannot be loader. Not supported file format." << endl;
+			cout << filename << " cannot be loaded. Not supported file format." << endl;
 			return false;
 			break;
 		}
 	}
 
-	bool ImageUtils::saveFile(string filename, Color **File, int XResolution, int YResolution) {
+	bool ImageUtils::saveFile(const string filename, Color **File, const int XResolution, const int YResolution) {
+		cout << XResolution << " x " << YResolution << endl;
 		switch (getFileExtension(filename)) {
 		case BMP_FORMAT:
-			ImageUtils::saveBMP(filename, File, XResolution, YResolution);
+			return ImageUtils::saveBMP(filename, File, XResolution, YResolution);
 			break;
 		case JPG_FORMAT:
-			ImageUtils::saveJPG(filename, File, XResolution, YResolution);
+			return ImageUtils::saveJPG(filename, File, XResolution, YResolution);
 			break;
 		case PPM_FORMAT:
-			ImageUtils::savePPM(filename, File, XResolution, YResolution);
+			return ImageUtils::savePPM(filename, File, XResolution, YResolution);
 			break;
 		default:
 			cout << filename << " cannot be saved. Not supported file format." << endl;
 			break;
 		}
+
+		return false;
 	}
 
-	bool ImageUtils::readPPM(string filename, Color ***File, int *XResolution, int *YResolution) {
+	bool ImageUtils::readPPM(const string filename, Color ***File, int *XResolution, int *YResolution) {
 		FILE* fp;
 
 		int MaxColorValue;
@@ -140,7 +149,7 @@ namespace Marcel{
 		return true;
 	}
 
-	bool ImageUtils::savePPM(string filename, Color **File, int XResolution, int YResolution) {
+	bool ImageUtils::savePPM(const string filename, Color **File, const int XResolution, const int YResolution) {
 		FILE *fp = fopen((filename.c_str()), "w");
 
 		if (fp != NULL) {
@@ -166,7 +175,7 @@ namespace Marcel{
 
 
 	//////////////////////////////// BMP FILES //////////////////////////////////////////////
-	bool ImageUtils::readBMP(string filename, Color ***File, int *XResolution, int *YResolution) {
+	bool ImageUtils::readBMP(const string filename, Color ***File, int *XResolution, int *YResolution) {
 		BITMAPFILEHEADER fh;
 		BITMAPINFOHEADER ih;
 
@@ -208,9 +217,11 @@ namespace Marcel{
 			cout << "Done" << endl;
 			return true;
 		}
+
+		return false;
 	}
 
-	bool ImageUtils::saveBMP(string filename, Color **File, int XResolution, int YResolution) {
+	bool ImageUtils::saveBMP(const string filename, Color **File, const int XResolution, const int YResolution) {
 		BITMAPFILEHEADER fh;
 		BITMAPINFOHEADER ih;
 		int row_padded = (XResolution * 3 + 3) & (~3);
@@ -256,7 +267,7 @@ namespace Marcel{
 		return false;
 	}
 
-	bool ImageUtils::readJPG(string filename, Color ***File, int *XResolution, int *YResolution) {
+	bool ImageUtils::readJPG(const string filename, Color ***File, int *XResolution, int *YResolution) {
 		/* This struct contains the JPEG decompression parameters and pointers to
 			 * working space (which is allocated as needed by the JPEG library).
 			 */
@@ -369,7 +380,7 @@ namespace Marcel{
 		return true;
 	}
 
-	bool ImageUtils::saveJPG(string filename, Color **File, int XResolution, int YResolution) {
+	bool ImageUtils::saveJPG(const string filename, Color **File, const int XResolution, const int YResolution) {
 
 		JSAMPLE * image_buffer;
 		image_buffer = new JSAMPLE[XResolution * 3];
@@ -467,29 +478,30 @@ namespace Marcel{
 		jpeg_destroy_compress(&cinfo);
 
 		delete image_buffer;
+		return true;
 	}
 
-	bool ImageUtils::readTGA(string filename, Color ***File, int *XResolution, int *YResolution) {
+	bool ImageUtils::readTGA(const string filename, Color ***File, int *XResolution, int *YResolution) {
 		TGA *tga;
 		TGAData *data;
 
 		data = (TGAData*)malloc(sizeof(TGAData));
 		//data = new TGAData;
 		if (!data) {
-			TGA_ERROR((TGA*)NULL, TGA_OOM);
+			//TGA_ERROR((TGA*)NULL, TGA_OOM);
 			return 0;
 		}
 
 		tga = TGAOpen(filename.c_str(), "r");
 		if (!tga || tga->last != TGA_OK) {
-			TGA_ERROR(tga, TGA_OPEN_FAIL);
+			//TGA_ERROR(tga, TGA_OPEN_FAIL);
 			cout << "Failed" << endl;
 			return false;
 		}
 
 		data->flags = TGA_IMAGE_INFO | TGA_IMAGE_ID | TGA_IMAGE_DATA | TGA_RGB;
 		if (TGAReadImage(tga, data) != TGA_OK) {
-			TGA_ERROR(tga, TGA_READ_FAIL);
+			//TGA_ERROR(tga, TGA_READ_FAIL);
 			cout << "Failded" << endl;
 			return false;
 		}
@@ -519,7 +531,7 @@ namespace Marcel{
 		return true;
 	}
 
-	bool ImageUtils::readFLI(string filename, Color ***File, int *XResolution, int *YResolution) {
+	bool ImageUtils::readFLI(const string filename, Color ***File, int *XResolution, int *YResolution) {
 		FlicImg img(filename);
 		CEL_COLOR *map = img.getMap();
 
@@ -551,7 +563,7 @@ namespace Marcel{
 		return true;
 	}
 
-	bool ImageUtils::readPNG(string filename, Color ***File, int *XResolution, int *YResolution) {
+	bool ImageUtils::readPNG(const string filename, Color ***File, int *XResolution, int *YResolution) {
 		std::vector<unsigned char> image; //the raw pixels
 		unsigned width, height;
 
@@ -584,5 +596,49 @@ namespace Marcel{
 
 		cout << "Done" << endl;
 		return true;
+	}
+
+	bool ImageUtils::readGIF(const string filename, Color ***File, int *XResolution, int *YResolution) {
+		int error;
+	    GifFileType* gifFile = DGifOpenFileName(filename.c_str(), &error);
+	    if (!gifFile) {
+	        std::cout << "DGifOpenFileName() failed - " << error << std::endl;
+	        return false;
+	    }
+	    if (DGifSlurp(gifFile) == GIF_ERROR) {
+	        std::cout << "DGifSlurp() failed - " << gifFile->Error << std::endl;
+	        DGifCloseFile(gifFile, &error);
+	        return false;
+	    }
+
+	    ColorMapObject* commonMap = gifFile->SColorMap;
+	    std::cout << filename << ": " << gifFile->SWidth << "x" << gifFile->SHeight << std::endl;
+
+	    for (int i = 0; i < 1; ++i) {
+	        const SavedImage& saved = gifFile->SavedImages[i];
+	        const GifImageDesc& desc = saved.ImageDesc;
+	        const ColorMapObject* colorMap = desc.ColorMap ? desc.ColorMap : commonMap;
+	      
+	        (*XResolution) = desc.Width;
+			(*YResolution) = desc.Height;
+
+			(*File) = new Color*[(*XResolution)];
+			for (int i = 0; i < (*XResolution); i++)
+				(*File)[i] = new Color[(*YResolution)];
+
+	        std::stringstream ss;
+	        for (int v = 0; v < desc.Height; ++v) {
+	            for (int u = 0; u < desc.Width; ++u) {
+	                int c = saved.RasterBits[v * desc.Width + u];
+	                if (colorMap) {
+	                    GifColorType rgb = colorMap->Colors[c];
+	     				(*File)[u][v].setColor(rgb.Red/255.0,rgb.Green/255.0,rgb.Blue/255.0);
+	                }
+	            }
+	        }
+	    }
+
+	    DGifCloseFile(gifFile, &error);
+	    return true;
 	}
 }

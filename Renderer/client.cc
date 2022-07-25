@@ -6,14 +6,9 @@
 #include "Core/Raytrace.hh"
 
 #include "Utils/Network/SocketException.hh"
-//#include "Utils/TinyThread/tinythread.h"
 
 double Marcel::Socket::time_spent_recv = 0;
 double Marcel::Socket::time_spent_send = 0;
-uint64_t Marcel::Objet::SuccessfulIntersectionNumber = 0;
-uint64_t Marcel::Objet::IntersectionNumber = 0;
-
-
 
 #include <iostream>
 #include <thread>

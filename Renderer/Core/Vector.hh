@@ -21,21 +21,28 @@ public:
 	Vector();
 	Vector(double, double, double);
 	Vector(Point, Point);
-	Vector(Vector&);
-	//Vector(RawVec3&);
-
-	inline void   Normalize(){
+	
+	inline void Normalize(){
 		double N = Norme();
 		x /= N;
 		y /= N;
 		z /= N;
 	};
 
+	inline Vector Normalized(){
+		return (*this)/Norme();
+	}
+
 	inline double Norme()	{
 		return sqrt(x * x + y * y + z * z);
 	};
 
-	Vector (const RawVec3& v) {
+	inline Vector(const RawVec3& v) {
+		x = v.x;
+		y = v.y;
+		z = v.z;
+	}
+	inline Vector(const Vector &v){
 		x = v.x;
 		y = v.y;
 		z = v.z;
@@ -45,7 +52,7 @@ public:
 	~Vector();
 };
 
-double   operator*(Vector, Vector); // Produit scalaire
-Vector   operator/(Vector, Vector); // Produit Vectoriel
+double   operator*(const Vector&, const Vector&); // Produit scalaire
+Vector   operator/(const Vector&, const Vector&); // Produit Vectoriel
 }
 #endif

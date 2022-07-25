@@ -1,5 +1,6 @@
 using namespace std;
 #include "Matrix.hh"
+#include <iostream>
 
 namespace Marcel{
 
@@ -86,7 +87,6 @@ namespace Marcel{
 			for (int j = 0; j < jsize; j++)
 				for (int k = 0; k < m.jsize; k++)
 					r.table[i][k] += table[i][j] * m.table[j][k];
-
 		return r;
 	}
 
@@ -163,6 +163,8 @@ namespace Marcel{
 		for (int i = 0; i < isize; i++)
 			for (int j = 0; j < jsize; j++)
 				table[i][j] = m.table[i][j];
+
+		return 0;
 	}
 
 	double Matrix::getValue(int i, int j)
@@ -173,6 +175,13 @@ namespace Marcel{
 		return table[i][j];
 	}
 
+	int Matrix::getIsize(){
+		return isize;
+	}
+	int Matrix::getJsize(){
+		return jsize;
+	}
+
 	void Matrix::setValue(int i, int j, double v)
 	{
 		if (i < 0 || i > isize || j < 0 || j > jsize)
@@ -181,10 +190,10 @@ namespace Marcel{
 		table[i][j] = v;
 	}
 
-	ostream& operator<<(ostream& o, Matrix m)
+	std::ostream& operator<<(std::ostream& o, Matrix m)
 	{
-		for (int i = 0; i < m.isize; i++) {
-			for (int j = 0; j < m.jsize; j++)
+		for (int i = 0; i < m.getIsize(); i++) {
+			for (int j = 0; j < m.getJsize(); j++)
 				o << m.getValue(i, j) << " ";
 			o << endl;
 		}

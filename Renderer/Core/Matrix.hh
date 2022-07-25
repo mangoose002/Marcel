@@ -2,8 +2,8 @@
 #define _MATRIX_HH_
 
 #include <iostream>
-#include "Vector.hh"
-#include "Point.hh"
+#include "Core/Vector.hh"
+#include "Core/Point.hh"
 
 namespace Marcel{
   class Matrix
@@ -20,6 +20,8 @@ namespace Marcel{
 
     void   Identity();
     double getValue(int i,int j);
+    int    getIsize();
+    int    getJsize();
     void setValue(int i,int j, double v);
 
     Matrix operator+(Matrix);
@@ -31,9 +33,8 @@ namespace Marcel{
     Point  operator*(Point);
 
     int operator=(Matrix);
-
-  friend ostream& operator<<(ostream& o,Matrix);
-
   };
+
+  std::ostream& operator<<(std::ostream& o,Matrix);
 }
 #endif

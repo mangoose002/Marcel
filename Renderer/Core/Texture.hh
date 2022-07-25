@@ -16,8 +16,8 @@ namespace Marcel{
     int           XSize;
     int           YSize;
     double        Strength;
-    char          ID[256];
-    char          FileName[256];
+    string        ID;
+    string        FileName;
     int           MaxColorValue;
     int           Animation;
     Color         **map;
@@ -32,7 +32,7 @@ namespace Marcel{
     
     virtual Color  getColor(double,double)=0;
     virtual Color  getColor(int,int)=0;
-    char          *getID();
+    string         getID();
     double         getGray(double,double);
     double         getGray(int,int);
     bool           isLoaded();

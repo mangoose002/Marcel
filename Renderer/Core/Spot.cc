@@ -27,7 +27,7 @@ namespace Marcel{
   void Spot::setHotSpot(double f) { cos_angle_1 = cos((f/180)*M_PI); };
 
   Color Spot::getIntensity(Point *p){
-    Vector v = Vector((*p).x-O.x,(*p).y-O.y,(*p).z-O.z);
+    Vector v = (*p) - O; //Vector((*p).x-O.x,(*p).y-O.y,(*p).z-O.z);
     v.Normalize();
 
     double cos_angle = v*Direction;
@@ -36,14 +36,16 @@ namespace Marcel{
 
     if(cos_angle>cos_angle_2 && cos_angle<cos_angle_1)
       return Intensity*((cos_angle-cos_angle_2)/(cos_angle_1-cos_angle_2)) ;
+
+    return Color(0,0,0);
   }
 
-  int Spot::CanIlluminate(Point *p){
-    Vector v = Vector((*p).x-O.x,(*p).y-O.y,(*p).z-O.z);
+  bool Spot::CanIlluminate(Point *p){
+    Vector v = (*p)-O; //Vector((*p).x-O.x,(*p).y-O.y,(*p).z-O.z);
     v.Normalize();
     if(v*Direction>cos_angle_2)
-      return 1;
-    else
-      return 0;
+      return true;
+    
+    return false;
   }
 }

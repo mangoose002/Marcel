@@ -1,8 +1,8 @@
-#ifndef _OCTREE_H_
-#define _OCTREE_H_
+#ifndef _OCTREE_HH_
+#define _OCTREE_HH_
 
-#include "Core/Object.hh"
 #include "Core/nTree.hh"
+#include "Core/Object.hh"
 #include "Core/Droite.hh"
 #include "Core/Tuple.hh"
 #include "Core/Plan.hh"
@@ -27,20 +27,7 @@ namespace Marcel {
 	class Octree : public nTree
 	{
 	private:
-		Point  BoundingMin;
-		Point  BoundingMax;
-		Point  Center;       // Octree center
-		double R;            // Max Octree Radius
-
-		double xmin; // Coordonnées de l'octree
-		double xmax;
-		double ymin;
-		double ymax;
-		double zmin;
-		double zmax;
-		double X;
-		double Y;
-		double Z;
+		BoundingBox BBox;
 
 		bool  TestIntersection(Droite *D);
 		int  CheckObject(Objet *);
@@ -48,7 +35,9 @@ namespace Marcel {
 
 	public:
 		Octree(int, int, Octree *);
+		Octree(Point,Point,int=0);
 		Octree(double, double, double, double, double, double);
+		Octree(Point,double);
 		~Octree();
 
 		int  ComputeLight(Droite *D, double t, double *NS, double *NL, Objet *Ob);
@@ -56,27 +45,11 @@ namespace Marcel {
 		double getHeight();
 		double getWidth();
 		double getDepth();
+		BoundingBox getBoundingBox() { return BBox; }
 
-		Point  getMinBound();
-		Point  getMaxBound();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		Point  getCenter();
+		Point  getBoundingMin();
+		Point  getBoundingMax();
 	};
 }
 

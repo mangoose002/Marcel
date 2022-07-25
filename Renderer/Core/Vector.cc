@@ -28,16 +28,6 @@ namespace Marcel{
 
 	Vector::~Vector() {
 	};
-	Vector::Vector(Vector &v){
-		x = v.x;
-		y = v.y;
-		z = v.z;
-	}
-/*	Vector::Vector(RawVec3 &v){
-		x = v.x;
-		y = v.y;
-		z = v.z;
-	}*/
 
 	void Vector::divide(double N) {
 		x /= N;
@@ -45,17 +35,11 @@ namespace Marcel{
 		z /= N;
 	}
 
-	double operator*(Vector V1, Vector V2) { //Produit Scalaire
+	double operator*(const Vector &V1, const Vector &V2) { //Produit Scalaire
 		return V1.x * V2.x + V1.y * V2.y + V1.z * V2.z;
 	}
 
-	Vector operator/(Vector V1, Vector V2) { // Produit Vectoriel
-		double X, Y, Z;
-
-		X = V1.y * V2.z - V1.z * V2.y;
-		Y = V1.z * V2.x - V1.x * V2.z;
-		Z = V1.x * V2.y - V1.y * V2.x;
-
-		return Vector(X, Y, Z);
+	Vector operator/(const Vector &V1, const Vector &V2) { // Produit Vectoriel
+		return Vector(V1.y * V2.z - V1.z * V2.y, V1.z * V2.x - V1.x * V2.z, V1.x * V2.y - V1.y * V2.x);
 	}
 }

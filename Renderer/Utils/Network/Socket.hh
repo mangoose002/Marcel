@@ -34,8 +34,8 @@ namespace Marcel{
 		bool connect ( const std::string host, const int port );
 
 		// Data Transimission
-		bool send( const std::string ) ;
-		bool send(const char *message,const int size);
+		int send( const std::string ) ;
+		int send(const char *message,const int size);
 		int recv(std::string&);
 		int recv(char **message,const int size);
 
@@ -45,7 +45,6 @@ namespace Marcel{
 		int m_sock;
 		int         mode; // 1=Server | 2=Client
 		sockaddr_in m_addr;
-		//tthread::mutex  mMutex;
 	};
 }
 

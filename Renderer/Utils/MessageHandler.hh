@@ -59,13 +59,11 @@ public:
   /** Create the message
       @param message_type is the kind of message sent to the server
       @param format needs to be something like:
-      <LL>
       <LI>%<B>s</B> for string.
       <LI>%<B>b</B> for byte.
       <LI>%<B>i</B> for integer.
       <LI>%<B>w</B> for word.
       <LI>%<B>B</B> for block.
-      </LL>
       @param ... The list of the values to set in the message, accordingly to the format
       @return The size of the generated message
   */
@@ -77,20 +75,18 @@ public:
       @param message is the message to store to.
       @param message_type is the kind of message
       @param format needs to be something like:
-      <LL>
       <LI>%<B>s</B> for string.
       <LI>%<B>b</B> for byte.
       <LI>%<B>i</B> for integer.
       <LI>%<B>w</B> for word.
       <LI>%<B>B</B> for block.
-      </LL>
       @param ... The list of the values to set in the message, accordingly to the format
       @return The kind of the generated message
   */
   int ReadMessage(char *message, int size, const char*format, ...);
   int ReadMessage(char *message, int size, const char*format, va_list ap);
 
-  int   setColor(int position, Color c);
+  void  setColor(int position, Color c);
   Color getColor(int position);
   void  setBinaryBlock(int position, int size, unsigned char*);
   void  getBinaryBlock(int position, int size, unsigned char**);

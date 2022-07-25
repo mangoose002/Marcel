@@ -10,7 +10,7 @@ GrayTexture::GrayTexture(char *id, char *Filename, int x, int y)
 {
   XTiling = x;
   YTiling = y;
-  strcpy(ID, id);
+  ID = string(id);
 
   FILE* fp;
 
@@ -25,7 +25,7 @@ GrayTexture::GrayTexture(char *id, char *Filename, int x, int y)
   int Type;
   double R, G, B;
   int i, j;
-  strcpy(FileName, Filename);
+  FileName = string(Filename);
 
   fscanf(fp, "P%d\n", &Type);
   if (Type != 6 && Type != 5) // Binaire

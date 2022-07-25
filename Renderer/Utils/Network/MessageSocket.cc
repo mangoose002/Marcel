@@ -6,7 +6,6 @@
 #include "Utils/Network/MessageSocket.hh"
 #include "Utils/Network/SocketException.hh"
 #include "Utils/Utils.hh"
-//using namespace tthread;
 
 namespace Marcel{
 

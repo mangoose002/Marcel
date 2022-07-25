@@ -235,8 +235,8 @@ namespace l3ds{
 
 		m._41 = 0.0f;
 		m._42 = 0.0f;
-		m._43 = 1.0f;
-		m._44 = 0.0f;
+		m._43 = 0.0f;
+		m._44 = 1.0f;
 	}
 
 	LVector4 VectorByMatrix(const LMatrix4 &m, const LVector4 &vec)
@@ -827,7 +827,6 @@ namespace l3ds{
 			(*output) << "Spot{ <" << m_pos.x << "," << m_pos.z << "," << -m_pos.y << ">," << endl;
 			(*output) << "      <" << m_color.r * 255 << "," << m_color.g * 255 << "," << m_color.b * 255 << ">," << endl;
 			(*output) << "      <" << m_target.x << "," << m_target.z << "," << -m_target.y << ">," << endl;
-			//      cout << "       " << m_falloff << "};" << endl;
 			(*output) << "       " << m_hotspot << "," << endl;
 			(*output) << "       " << m_falloff << "};" << endl;
 		}
@@ -1058,7 +1057,7 @@ namespace l3ds{
 		if ((m_buffer != 0) && (m_bufferSize != 0) && ((m_pos + 4) < m_bufferSize))
 		{
 			float *w = (float*)(m_buffer + m_pos);
-			float s = *w;//(float)*(m_buffer+m_pos);
+			float s = *w;
 			m_pos += 4;
 			return s;
 		}
@@ -1370,13 +1369,13 @@ namespace l3ds{
 				m._23 = ReadFloat();
 
 				m._31 = ReadFloat();
-				m._32 = ReadFloat();
+				m._32 = ReadFloat(); 
 				m._33 = ReadFloat();
 
 				m._41 = ReadFloat();
 				m._42 = ReadFloat();
 				m._43 = ReadFloat();
-
+				
 				m._14 = 0.0f;
 				m._24 = 0.0f;
 				m._34 = 0.0f;

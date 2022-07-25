@@ -21,11 +21,8 @@ double Marcel::Socket::time_spent_send = 0;
 #include "Core/Object.hh"
 #include "Core/Image.hh"
 #include "Core/RowDispatcher.hh"
-uint64_t Marcel::Objet::SuccessfulIntersectionNumber = 0;
-uint64_t Marcel::Objet::IntersectionNumber = 0;
 
 using namespace std;
-//using namespace tthread;
 using namespace Marcel;
 
 int locked = true;

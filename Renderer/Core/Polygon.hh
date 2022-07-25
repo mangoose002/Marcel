@@ -27,6 +27,8 @@ public:
         ~Polygon();
   void  AddTriangle(Triangle *);
   Color getColor(Point *);
+  inline Octree* getOctree(){ return TriangleOctree;  }
+
   int   Intersect(Tuple *,Droite *D);
   int   CreateSmallestOctree(int);
   int   CreateSmallestQuadtree(int);

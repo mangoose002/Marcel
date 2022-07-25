@@ -6,7 +6,6 @@ using namespace std;
 
 namespace Marcel{
 
-	//using namespace tthread;
 	RowDispatcher::RowDispatcher(Image * aImage, int blockSize, int direction) {
 		mBlockSize = blockSize;
 		mImage = aImage;
@@ -19,18 +18,19 @@ namespace Marcel{
 	}
 
 	int RowDispatcher::nextRow() {
-		lock_guard<mutex> guard(mMutex);
-		//this_thread::sleep_for(chrono::microseconds(100));
-
+		
 		if (mDirection == DISPATCHER_DSC) {
+			lock_guard<mutex> guard(mMutex);
 			if (mNextRow <= 0)
 				return -1;
 		} else {
+			lock_guard<mutex> guard(mMutex);
 			if (mNextRow > mImage->Height()) {
 				return -1;
 			}
 		}
 
+		lock_guard<mutex> guard(mMutex);
 		int result = mNextRow;
 		mNextRow += mBlockSize * mDirection;
 		return result;

@@ -6,7 +6,6 @@
 #include "Core/Image.hh"
 #include "Utils/Network/ClientSocket.hh"
 
-//using namespace tthread;
 namespace Marcel{
 class ImageClient: public Image{
 	public:

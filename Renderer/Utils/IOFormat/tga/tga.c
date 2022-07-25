@@ -16,47 +16,72 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
  
 #include <stdio.h>
 #include <stdlib.h>
-#include "tga.h"
+#include <strings.h>
+#include <tga.h>
+#include "tga_private.h"
 
-
-TGA*
-TGAOpen(char *file, 
-	char *mode)
+const char *
+tga_error_strings[] =
 {
- 	TGA *tga;
-	FILE *fd;
+	"Success",
+	"Error",
+	"Out of memory",
+	"Failed to open file",
+	"Seek failed",
+	"Read failed",
+	"Write failed",
+	"Unknown sub-format",
+};
 
-	tga = (TGA*)malloc(sizeof(TGA));
+
+tuint8
+TGA_handle_set_error(TGA *tga, tuint8 code)
+{
+	if (tga) {
+		if (tga->error) {
+			tga->error(tga, code);
+		}
+		tga->last = code;
+	}
+	return code;
+}
+
+
+TGA *
+TGAOpen(const char *file, 
+	const char *mode)
+{
+ 	TGA *tga = (TGA*) malloc(sizeof(TGA));
 	if (!tga) {
 		TGA_ERROR(tga, TGA_OOM);
 		return NULL;
 	}
-	
-	tga->off = 0;
 
-	fd = fopen(file, mode);
+	FILE *fd = fopen(file, mode);
 	if (!fd) {
 		TGA_ERROR(tga, TGA_OPEN_FAIL);
 		free(tga);
 		return NULL;
 	}
+
 	tga->fd = fd;
+	tga->off = 0;
+	bzero(&tga->hdr, sizeof(TGAHeader));
 	tga->last = TGA_OK;
+	tga->error = (TGAErrorProc) 0;
 	return tga;
 }
 
 
-TGA*
+TGA *
 TGAOpenFd(FILE *fd)
 {
-	TGA *tga;
-
-	tga = (TGA*)malloc(sizeof(TGA));
+	TGA *tga = (TGA*)malloc(sizeof(TGA));
 	if (!tga) {
 		TGA_ERROR(tga, TGA_OOM);
 		return NULL;
@@ -68,20 +93,23 @@ TGAOpenFd(FILE *fd)
 		return NULL;
 	}
 
-	tga->off = ftell(fd);
-	if(tga->off == -1) {
+	long offset = ftell(fd);
+	if (offset == -1) {
 		TGA_ERROR(tga, TGA_OPEN_FAIL);
 		free(tga);
 		return NULL;
 	}
-	
+
 	tga->fd = fd;
+	tga->off = offset;
+	bzero(&tga->hdr, sizeof(TGAHeader));
 	tga->last = TGA_OK;
+	tga->error = (TGAErrorProc) 0;
 	return tga;
 }
 
 
-void 
+void
 TGAClose(TGA *tga)
 {
 	if (tga) {
@@ -91,10 +119,27 @@ TGAClose(TGA *tga)
 }
 
 
-char*
-TGAStrError(tuint8 code)
+void
+TGAClearError(TGA *tga)
 {
-	if (code >= TGA_ERRORS) code = TGA_ERROR;
+	if (tga) {
+		tga->last = TGA_OK;
+		clearerr(tga->fd);
+	}
+}
+
+
+const char*
+TGAStrError(TGA *tga)
+{
+	return TGAStrErrorCode(tga->last);
+}
+
+
+const char*
+TGAStrErrorCode(tuint8 code)
+{
+	if (code >= TGA_ERRORS_NB) code = TGA_ERROR;
 	return tga_error_strings[code];
 }
 
@@ -105,7 +150,11 @@ __TGASeek(TGA  *tga,
 	  int   whence)
 {
 	fseek(tga->fd, off, whence);
-	tga->off = ftell(tga->fd);
+	long offset = ftell(tga->fd);
+	if (offset == -1) {
+		TGA_ERROR(tga, TGA_SEEK_FAIL);
+	}
+	tga->off = offset;
 	return tga->off;
 }
 
@@ -113,13 +162,10 @@ __TGASeek(TGA  *tga,
 void
 __TGAbgr2rgb(tbyte  *data, 
 	     size_t  size, 
-	     size_t  bytes)
+	     size_t  stride)
 {
-	size_t i;
-	tbyte tmp;
-	
-	for (i = 0; i < size; i += bytes) {
-		tmp = data[i];
+	for (size_t i = 0; i < size; i += stride) {
+		tbyte tmp = data[i];
 		data[i] = data[i + 2];
 		data[i + 2] = tmp;
 	}

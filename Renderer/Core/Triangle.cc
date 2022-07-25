@@ -4,6 +4,10 @@ using namespace std;
 #include "Droite.hh"
 #include "Triangle.hh"
 #include <stdlib.h>
+#include "Profiling.hh"
+
+#define EPSILON  1e-8
+#define MAXVALUE 1e8
 
 namespace Marcel{
 	#define MIN(a,b)  a>b?b:a
@@ -22,19 +26,18 @@ namespace Marcel{
 		acn = ((Vector)(A - C)).Norme();
 		bcn = ((Vector)(B - C)).Norme();
 
-		N  = (B - A) / (C - A);
-		N1 = (B - A) / (C - A);
-		n  = N1.Norme() * N1.Norme();
+		V1 = B - A;
+		V2 = C - A;
 
-		V1 = A - C;
-		V2 = A - B;
+		N  = V1 / V2;
+		N1 = V1 / V2;
+		n  = N1.Norme() * N1.Norme();
 
 		N.Normalize();
 		P = Plan(A, N);
 
-		x =  5000; X = -5000;
-		y =  5000; Y = -5000;
-		z =  5000; Z = -5000;
+		x = y = z = 5000; 
+		X = Y = Z = -5000;
 		/////////////
 		x = MIN(x,a.x); X=MAX(X,a.x);
 		x = MIN(x,b.x); X=MAX(X,b.x);
@@ -59,11 +62,9 @@ namespace Marcel{
 	}
 
 	Triangle::~Triangle() {
-
 	}
 
 	int Triangle::Intersect(Tuple *CP, Droite *Dr) {
-		Objet::IntersectionNumber++;
 
 		double a = N.x * Dr->O.x + N.y * Dr->O.y + N.z * Dr->O.z - (N.x * A.x + N.y * A.y + A.z * N.z);
 		double b = N.x * Dr->D.x + N.y * Dr->D.y + N.z * Dr->D.z;
@@ -76,7 +77,7 @@ namespace Marcel{
 			double r, s, t;
 			double px, py, pz;
 
-			if (t1 > 1e-8)
+			if (t1 > EPSILON)
 			{
 				px = (Dr->O).x + t1 * (Dr->D).x;
 				py = (Dr->O).y + t1 * (Dr->D).y;
@@ -92,42 +93,40 @@ namespace Marcel{
 				y1 = apz * V1.x - V1.z * apx;
 				z1 = apx * V1.y - V1.x * apy;
 				s = x1 * N1.x + y1 * N1.y + z1 * N1.z;
-				if (s > n || s < -1e-8) {
+				if (s > n || s < -EPSILON) {
 					(*CP).t = -1;
-					return 0;
+					return false;
 				}
 
 				x1 = V2.y * apz - apy * V2.z;
 				y1 = V2.z * apx - apz * V2.x;
 				z1 = V2.x * apy - apx * V2.y;
 				t = x1 * N1.x + y1 * N1.y + z1 * N1.z;
-				if (t > n || t < -1e-8) {
+				if (t > n || t < -EPSILON) {
 					(*CP).t = -1;
-					return 0;
+					return false;
 				}
 
 				r = n - ( t + s );
-				if (r > n || r < -1e-8) {
+				if (r > n || r < -EPSILON) {
 					(*CP).t = -1;
-					return 0;
+					return false;
 				}
 
 				(*CP).t   = t1;
 				(*CP).obj = this;
 
-				Objet::SuccessfulIntersectionNumber++;
-
-				return 1;
+				return true;
 			}
 			else
 			{
 				(*CP).t = -1;
-				return 0;
+				return false;
 			}
 		}
 
 		(*CP).t = -1;
-		return 0;
+		return false;
 	}
 
 	Color Triangle::getColor(Point *P) {
@@ -177,9 +176,9 @@ namespace Marcel{
 	}
 
 
-	int Triangle::TestIntersection(Droite *Dr) {
+	bool Triangle::TestIntersection(Droite *Dr) {
 
-		//return 1;
+		// return true; // debug
 
 		double Xl = Dr->O.x - Center.x;
 		double Yl = Dr->O.y - Center.y;
@@ -189,23 +188,23 @@ namespace Marcel{
 		double BB = b * b - (Xl * Xl + Yl * Yl + Zl * Zl - R2);
 
 		if (BB < 0)
-			return 0;
+			return false;
 
 		double r = sqrt(BB);
 		double t1 = -b - r;
 		double t2 = -b + r;
 
 		if (t1 < 1e-8 && t2 < 1e-8)
-			return 0;
+			return false;
 
-		return 1; // debug
+		return true; // debug
 
-		double Yy = -(Dr->D.z * Dr->D.z) - (Dr->D.x * Dr->D.x);
 		double Yx = Dr->D.y * Dr->D.x;
+		double Yy = -(Dr->D.z * Dr->D.z) - (Dr->D.x * Dr->D.x);
 		double Yz = Dr->D.z * Dr->D.y;
 
-		double Xmin = 1e8; double Ymin = 1e8;
-		double Xmax = -1e8; double Ymax = -1e8;
+		double Xmin = MAXVALUE; double Ymin = MAXVALUE;
+		double Xmax = -MAXVALUE; double Ymax = -MAXVALUE;
 		double x1, y1;
 
 		double a1 = (A.z - Dr->O.z) * Dr->D.x;
@@ -227,8 +226,8 @@ namespace Marcel{
 		if (y1 > Ymax) Ymax = y1;
 		if (y1 < Ymin) Ymin = y1;
 
-		if (Xmin * Xmax < -1e-8 && Ymin * Ymax < -1e-8 && Xmin != 1e8 && Xmax != -1e8 && Ymin != 1e8 && Ymax != -1e8)
-			return 1;
+		if (Xmin * Xmax < -1e-8 && Ymin * Ymax < -1e-8 && Xmin != MAXVALUE && Xmax != -MAXVALUE && Ymin != MAXVALUE && Ymax != -MAXVALUE)
+			return true;
 
 		x1 = b1 - b2; // B
 		y1 = b3 + b4 + b5;
@@ -237,8 +236,8 @@ namespace Marcel{
 		if (y1 > Ymax) Ymax = y1;
 		if (y1 < Ymin) Ymin = y1;
 
-		if (Xmin * Xmax < -1e-8 && Ymin * Ymax < -1e-8 && Xmin != 1e8 && Xmax != -1e8 && Ymin != 1e8 && Ymax != -1e8)
-			return 1;
+		if (Xmin * Xmax < -1e-8 && Ymin * Ymax < -1e-8 && Xmin != MAXVALUE && Xmax != -MAXVALUE && Ymin != MAXVALUE && Ymax != -MAXVALUE)
+			return true;
 
 		double c1 = (C.z - Dr->O.z) * Dr->D.x;
 		double c2 = (C.x - Dr->O.x) * Dr->D.z;
@@ -253,78 +252,43 @@ namespace Marcel{
 		if (y1 > Ymax) Ymax = y1;
 		if (y1 < Ymin) Ymin = y1;
 
-		if (Xmin * Xmax < -1e-8 && Ymin * Ymax < -1e-8 && Xmin != 1e8 && Xmax != -1e8 && Ymin != 1e8 && Ymax != -1e8)
-			return 1;
+		if (Xmin * Xmax < -1e-8 && Ymin * Ymax < -1e-8 && Xmin != MAXVALUE && Xmax != -MAXVALUE && Ymin != MAXVALUE && Ymax != -MAXVALUE)
+			return true;
 
-		return 0;
+		return false;
 	}
 
 	void Triangle::applyTransformation(Matrix *M) {
 		A = (*M) * A;
 		B = (*M) * B;
 		C = (*M) * C;
+		
+		V1 = B - A;
+		V2 = C - A;
 
-		N  = (B - A) / (C - A);
-		N1 = (B - A) / (C - A);
+		N  = V1 / V2;
+		N1 = V1 / V2;
 		n  = N1.Norme() * N1.Norme();
-
-		V1 = A - C;
-		V2 = A - B;
 
 		N.Normalize();
 		P = Plan(A, N);
 
-		x = 5000; // Initialize bounding box.
-		X = -5000;
-		y = 5000;
-		Y = -5000;
-		z = 5000;
-		Z = -5000;
-		/////////////
-		if (A.x < x)
-			x = A.x;
-		if (A.x > X)
-			X = A.x;
+		// Initialize bounding box.
+		x = y = z = 5000; 
+		X = Y = Z = -5000;
 
-		if (B.x < x)
-			x = B.x;
-		if (B.x > X)
-			X = B.x;
+		x = MIN(x,A.x); X=MAX(X,A.x);
+		x = MIN(x,B.x); X=MAX(X,B.x);
+		x = MIN(x,C.x); X=MAX(X,C.x);
 
-		if (C.x < x)
-			x = C.x;
-		if (C.x > X)
-			X = C.x;
-		//////////////
-		if (A.y < y)
-			y = A.y;
-		if (A.y > Y)
-			Y = A.y;
+		y = MIN(y,A.y); Y=MAX(Y,A.y);
+		y = MIN(y,B.y); Y=MAX(Y,B.y);
+		y = MIN(y,C.y); Y=MAX(Y,C.y);
 
-		if (B.y < y)
-			y = B.y;
-		if (B.y > Y)
-			Y = B.y;
-
-		if (C.y < y)
-			y = C.y;
-		if (C.y > Y)
-			Y = C.y;
-		///////////////
-		if (A.z < z)
-			z = A.z;
-		if (A.z > Z)
-			Z = A.z;
-
-		if (B.z < z)
-			z = B.z;
-		if (B.z > Z)
-			Z = B.z;
-
-		if (C.z < z)
-			z = C.z;
-		if (C.z > Z)
-			Z = C.z;
+		z = MIN(z,A.z); Z=MAX(Z,A.z);
+		z = MIN(z,B.z); Z=MAX(Z,B.z);
+		z = MIN(z,C.z); Z=MAX(Z,C.z);
+		
 
 		Center = Point((x + X) / 2, (y + Y) / 2, (z + Z) / 2);
 		R2     = ((x - X) * (x - X) + (y - Y) * (y - Y) + (z - Z) * (z - Z)) / 4.0;
@@ -377,5 +341,22 @@ namespace Marcel{
 				(P->Distance(&P2) * acn),
 				(P->Distance(&P3) * abn)
 			);
+	}
+
+	OctreePosition Triangle::positionInOctree(Octree *O){
+		OctreePosition positions;
+		
+		for(int i=0;i<8;i++){
+			if(((Octree *)(O->getChild(i)))->getBoundingBox().contains(A)){
+				positions.APosition = i;	
+			}
+			if(((Octree *)(O->getChild(i)))->getBoundingBox().contains(B)){
+				positions.BPosition = i;	
+			}
+			if(((Octree *)(O->getChild(i)))->getBoundingBox().contains(C)){
+				positions.CPosition = i;	
+			}
+		}
+		return positions;
 	}
 }

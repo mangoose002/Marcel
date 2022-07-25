@@ -1,0 +1,36 @@
+digraph {
+	graph [fontname=Arial, nodesep=0.125, ranksep=0.25];
+	node [fontcolor=white, fontname=Arial, height=0, shape=box, style=filled, width=0];
+	edge [fontname=Arial];
+	1 [color="#d0d806", fontcolor="#ffffff", fontsize="10.00", label="_mcount_private\n74.00%\n(74.00%)"];
+	2 [color="#0c658a", fontcolor="#ffffff", fontsize="10.00", label="Marcel::Scene::Standard_helper(void*)\n17.76%\n(0.00%)\n1×"];
+	2 -> 3 [arrowsize="0.42", color="#0c658a", fontcolor="#0c658a", fontsize="10.00", label="17.76%\n1×", labeldistance="0.71", penwidth="0.71"];
+	3 [color="#0c658a", fontcolor="#ffffff", fontsize="10.00", label="Marcel::Raytracer::Standard()\n17.76%\n(0.01%)\n1×"];
+	3 -> 6 [arrowsize="0.42", color="#0c658a", fontcolor="#0c658a", fontsize="10.00", label="17.67%\n57169×", labeldistance="0.71", penwidth="0.71"];
+	4 [color="#0c658a", fontcolor="#ffffff", fontsize="10.00", label="void std::__invoke_impl<void, void (*)(void*), void*>(std::__invoke_other, void (*&&)(void*), void*&&)\n17.76%\n(0.00%)\n1×"];
+	4 -> 2 [arrowsize="0.42", color="#0c658a", fontcolor="#0c658a", fontsize="10.00", label="17.76%\n1×", labeldistance="0.71", penwidth="0.71"];
+	5 [color="#0c658a", fontcolor="#ffffff", fontsize="10.00", label="std::__invoke_result<void (*)(void*), void*>::type std::__invoke<void (*)(void*), void*>(void (*&&)(void*), void*&&)\n17.76%\n(0.00%)"];
+	5 -> 4 [arrowsize="0.42", color="#0c658a", fontcolor="#0c658a", fontsize="10.00", label="17.76%\n1×", labeldistance="0.71", penwidth="0.71"];
+	6 [color="#0c658a", fontcolor="#ffffff", fontsize="10.00", label="Marcel::Raytracer::Raytrace(Marcel::Ray*, Marcel::Objet*)\n17.67%\n(0.03%)\n57169×"];
+	6 -> 8 [arrowsize="0.38", color="#0c5386", fontcolor="#0c5386", fontsize="10.00", label="14.63%\n57827×", labeldistance="0.59", penwidth="0.59"];
+	6 -> 12 [arrowsize="0.35", color="#0d1977", fontcolor="#0d1977", fontsize="10.00", label="2.98%\n6161×", labeldistance="0.50", penwidth="0.50"];
+	8 [color="#0c6489", fontcolor="#ffffff", fontsize="10.00", label="Marcel::nTree::Intersect(Marcel::Droite*, Marcel::Tuple*)\n17.51%\n(4.31%)\n611473×"];
+	8 -> 8 [arrowsize="0.42", color="#0c6489", fontcolor="#0c6489", fontsize="10.00", label="518488×", labeldistance="0.70", penwidth="0.70"];
+	8 -> 10 [arrowsize="0.35", color="#0d267a", fontcolor="#0d267a", fontsize="10.00", label="5.70%\n25856459×", labeldistance="0.50", penwidth="0.50"];
+	8 -> 11 [arrowsize="0.35", color="#0d2078", fontcolor="#0d2078", fontsize="10.00", label="4.39%\n11810432×", labeldistance="0.50", penwidth="0.50"];
+	8 -> 15 [arrowsize="0.35", color="#0d1174", fontcolor="#0d1174", fontsize="10.00", label="1.04%\n25958819×", labeldistance="0.50", penwidth="0.50"];
+	8 -> 16 [arrowsize="0.35", color="#0d1074", fontcolor="#0d1074", fontsize="10.00", label="0.90%\n25793882×", labeldistance="0.50", penwidth="0.50"];
+	9 [color="#0d307d", fontcolor="#ffffff", fontsize="10.00", label="__fentry__\n7.80%\n(7.80%)"];
+	10 [color="#0d267a", fontcolor="#ffffff", fontsize="10.00", label="Marcel::Objet::TestCullingBox(Marcel::Droite*)\n5.70%\n(3.58%)\n25856459×"];
+	10 -> 14 [arrowsize="0.35", color="#0d1675", fontcolor="#0d1675", fontsize="10.00", label="2.12%\n13938451×", labeldistance="0.50", penwidth="0.50"];
+	11 [color="#0d2078", fontcolor="#ffffff", fontsize="10.00", label="Marcel::Triangle::Intersect(Marcel::Tuple*, Marcel::Droite*)\n4.39%\n(4.39%)\n11810432×"];
+	12 [color="#0d1977", fontcolor="#ffffff", fontsize="10.00", label="Marcel::Raytracer::computeDiffuse(Marcel::Tuple*, Marcel::Ray const*)\n2.98%\n(0.03%)\n6161×"];
+	12 -> 13 [arrowsize="0.35", color="#0d1976", fontcolor="#0d1976", fontsize="10.00", label="2.93%\n6285×", labeldistance="0.50", penwidth="0.50"];
+	13 [color="#0d1976", fontcolor="#ffffff", fontsize="10.00", label="Marcel::Octree::ComputeLight(Marcel::Droite*, double, double*, double*, Marcel::Objet*)\n2.93%\n(0.03%)\n6285×"];
+	13 -> 86 [arrowsize="0.35", color="#0d1976", fontcolor="#0d1976", fontsize="10.00", label="2.88%\n11400×", labeldistance="0.50", penwidth="0.50"];
+	14 [color="#0d1675", fontcolor="#ffffff", fontsize="10.00", label="Marcel::CullingBox::Test(Marcel::Droite*)\n2.12%\n(2.12%)\n13938451×"];
+	15 [color="#0d1174", fontcolor="#ffffff", fontsize="10.00", label="bool __gnu_cxx::operator!=<Marcel::Objet**, std::vector<Marcel::Objet*, std::allocator<Marcel::Objet*> > >(__gnu_cxx::__normal_iterator<Marcel::Objet**, std::vector<Marcel::Objet*, std::allocator<Marcel::Objet*> > > const&, __gnu_cxx::__normal_iterator<Marcel::Objet**, std::vector<Marcel::Objet*, std::allocator<Marcel::Objet*> > > const&)\n1.04%\n(0.70%)\n25975958×"];
+	16 [color="#0d1074", fontcolor="#ffffff", fontsize="10.00", label="std::vector<Marcel::Objet*, std::allocator<Marcel::Objet*> >::end()\n0.91%\n(0.43%)\n25819079×"];
+	86 [color="#0d1976", fontcolor="#ffffff", fontsize="10.00", label="Marcel::Polygon::Intersect(Marcel::Tuple*, Marcel::Droite*)\n2.89%\n(0.01%)\n34869×"];
+	86 -> 8 [arrowsize="0.35", color="#0d1976", fontcolor="#0d1976", fontsize="10.00", label="2.88%\n35158×", labeldistance="0.50", penwidth="0.50"];
+}

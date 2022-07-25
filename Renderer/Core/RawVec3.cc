@@ -13,22 +13,22 @@ namespace Marcel {
 		y = V.y;
 		z = V.z;
 	}
-	RawVec3 operator*(RawVec3 v,double d){
+	RawVec3 operator*(const RawVec3 &v,double d){
 		return RawVec3(v.x*d,v.y*d,v.z*d);
 	}
-	RawVec3 operator*(double d,RawVec3 v){
+	RawVec3 operator*(double d,const RawVec3 &v){
 		return RawVec3(v.x*d,v.y*d,v.z*d);
 	}
-	RawVec3 operator/(RawVec3 v,double d){
+	RawVec3 operator/(const RawVec3 &v,double d){
 		return RawVec3(v.x/d,v.y/d,v.z/d);
 	}
-	RawVec3 operator/(double d,RawVec3 v){
+	RawVec3 operator/(double d,const RawVec3 &v){
 		return RawVec3(v.x/d,v.y/d,v.z/d);
 	}
-	RawVec3 operator+(RawVec3 a,RawVec3 b){
+	RawVec3 operator+(const RawVec3 &a,const RawVec3 &b){
 		return RawVec3(a.x+b.x,a.y+b.y,a.z+b.z);
 	}
-	RawVec3 operator-(RawVec3 a,RawVec3 b){
+	RawVec3 operator-(const RawVec3 &a,const RawVec3 &b){
 		return RawVec3(a.x-b.x,a.y-b.y,a.z-b.z);
 	}
 	std::ostream& operator<<(std::ostream& o, RawVec3 v) {

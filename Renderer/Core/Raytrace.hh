@@ -23,8 +23,6 @@
 
 #define BLOCK_SIZE 8
 
-//using namespace tthread;
-
 namespace Marcel{
     class Raytracer
     {
@@ -48,7 +46,7 @@ namespace Marcel{
         float  CoeffY;
         Point  Cam;
         Point  Lookat;
-        Point  Oeil;
+        Point  Eye;
         Vector CX;
         Vector CY;
         Vector CZ;

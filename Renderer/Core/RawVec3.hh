@@ -19,12 +19,12 @@ namespace Marcel{
 			~RawVec3();
 	};
 
-	RawVec3 operator*(RawVec3,double);
-	RawVec3 operator*(double,RawVec3);
-	RawVec3 operator/(RawVec3,double);
-	RawVec3 operator/(double,RawVec3);
-	RawVec3 operator+(RawVec3,RawVec3);
-	RawVec3 operator-(RawVec3,RawVec3);
+	RawVec3 operator*(const RawVec3&,double);
+	RawVec3 operator*(double,const RawVec3&);
+	RawVec3 operator/(const RawVec3&,double);
+	RawVec3 operator/(double,const RawVec3&);
+	RawVec3 operator+(const RawVec3&,const RawVec3&);
+	RawVec3 operator-(const RawVec3&,const RawVec3&);
 	std::ostream& operator<<(std::ostream&, RawVec3);
 	//Vector& operator= (const RawVec3& v) {return Vector(v->x,v->y,v->z);}
 }

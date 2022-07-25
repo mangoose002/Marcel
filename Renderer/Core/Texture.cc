@@ -6,7 +6,7 @@ using namespace std;
 
 namespace Marcel{
 
-	char *Texture::getID() {
+	string Texture::getID() {
 		return ID;
 	}
 

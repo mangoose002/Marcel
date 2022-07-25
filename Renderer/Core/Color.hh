@@ -15,11 +15,10 @@
 namespace Marcel{
 	class Color
 	{
-	protected:
+	public:
 		float R;
 		float G;
 		float B;
-	public:
 		Color();
 		Color(float Rc, float Gc, float Bc);
 		~Color();
@@ -28,6 +27,11 @@ namespace Marcel{
 		inline float getGreen() {return G;};
 		inline float getBlue()  {return B;};
 		inline void  setColor(float r, float g, float b) { R = r; G = g; B = b; };
+		inline Color(const Color &C){
+			R = C.R;
+			G = C.G;
+			B = C.B;
+		}
 
 		float Max();
 		float MaxDifference(Color);
@@ -37,11 +41,11 @@ namespace Marcel{
 		void add(Color*);
 		Color multiply(Color *);
 
-		friend Color    operator*(Color, Color);
-		friend Color    operator*(float, Color);
-		friend Color    operator*(Color, float);
-		friend Color    operator+(Color, Color);
-		friend Color    operator/(Color, int);
+		friend Color    operator*(const Color&, const Color&);
+		friend Color    operator*(float, const Color&);
+		friend Color    operator*(const Color&, float);
+		friend Color    operator+(const Color&, const Color&);
+		friend Color    operator/(const Color&, int);
 		friend std::ostream& operator<<(std::ostream&, Color);
 	};
 }

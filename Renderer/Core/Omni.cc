@@ -34,8 +34,8 @@ namespace Marcel{
 	  return Intensity;
 	}
 
-	int Omni::CanIlluminate(Point *p)	{
-	  return 1;
+	bool Omni::CanIlluminate(Point *p)	{
+	  return true;
 	}
 
 }

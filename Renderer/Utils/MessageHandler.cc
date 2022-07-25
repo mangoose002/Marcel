@@ -70,8 +70,10 @@ int MessageHandler::CreateMessage(const char *format, int message_type, ...) {
 	va_list ap;
 
 	va_start(ap, message_type);
-	CreateMessage(NULL,format,message_type,ap);
+	int v = CreateMessage(NULL,format,message_type,ap);
 	va_end(ap);
+
+	return v;
 }
 
 int MessageHandler::CreateMessage(char **message, const char *format, int message_type, ...) {
@@ -79,8 +81,10 @@ int MessageHandler::CreateMessage(char **message, const char *format, int messag
 	va_list ap;
 
 	va_start(ap, message_type);
-	CreateMessage(message,format,message_type,ap);
+	int v = CreateMessage(message,format,message_type,ap);
 	va_end(ap);
+
+	return v;
 }
 
 int MessageHandler::CreateMessage(char **message, const char *format, int message_type,  va_list ap) {
@@ -147,8 +151,10 @@ int MessageHandler::ReadMessage(char *message, int size, const char *format, ...
 	va_list ap;
 
 	va_start(ap, format);
-	ReadMessage(message,size,format,ap);
+	int v = ReadMessage(message,size,format,ap);
 	va_end(ap);
+
+	return v;
 }
 
 int MessageHandler::ReadMessage(char *message, int size, const char *format, va_list ap) {
@@ -206,7 +212,7 @@ int MessageHandler::ReadMessage(char *message, int size, const char *format, va_
 	return getWord(0);
 }
 
-int MessageHandler::setColor(int position, Color C) {
+void MessageHandler::setColor(int position, Color C) {
 	//setWord((position * 6) + 4 + 2, (int)(C.getRed() * 255));
 	//setWord((position * 6) + 6 + 2, (int)(C.getGreen() * 255));
 	//setWord((position * 6) + 8 + 2, (int)(C.getBlue() * 255));
@@ -214,7 +220,6 @@ int MessageHandler::setColor(int position, Color C) {
 	setByte((position * 3) + 4 + 2, (int)(C.getRed() * 255));
 	setByte((position * 3) + 5 + 2, (int)(C.getGreen() * 255));
 	setByte((position * 3) + 6 + 2, (int)(C.getBlue() * 255));
-
 }
 
 Color MessageHandler::getColor(int position) {

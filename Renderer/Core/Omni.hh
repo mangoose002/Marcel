@@ -24,7 +24,7 @@ namespace Marcel{
 	  Omni(Point,Color); // Creation de base d'une lumiere blanche
 	  ~Omni();
 	  Color getIntensity(Point *);
-	  int CanIlluminate(Point *);
+	  bool CanIlluminate(Point *);
 	};
 }
 #endif

@@ -31,7 +31,7 @@ namespace Marcel {
     	~Material();
 
     	void setId           (int);
-    	void setName         (char *);
+    	void setName         (string);
     	void setMap1         (Texture *);
     	void setMap2         (Texture *);
     	void setBumpMap      (Texture *);

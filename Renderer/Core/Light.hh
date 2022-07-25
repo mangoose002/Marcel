@@ -22,7 +22,7 @@ namespace Marcel{
     virtual ~Light(){};
     Point  getOrigin();
     virtual Color getIntensity(Point *)=0;
-    virtual int CanIlluminate(Point *)=0;
+    virtual bool CanIlluminate(Point *)=0;
     double getBlue();
     double getGreen();
     double getRed();

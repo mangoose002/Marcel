@@ -56,6 +56,8 @@ namespace Marcel{
         }
         else
             return -1;
+
+        return -1;
     }
 
     char Droite::isValid(Point P){

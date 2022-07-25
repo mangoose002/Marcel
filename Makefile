@@ -52,9 +52,9 @@ BIN_DIR = bin
 TGZ_FILENAME = 'Marcel-'`date +"%Y-%m-%d"`'.tgz'
 
 #PROFILING=-fprofile-arcs -ftest-coverage
-CFLAGS=-std=gnu++11 -D_DEBUG_ -fpermissive -Wwrite-strings -Wno-deprecated -Wunused -g
+CFLAGS=-std=gnu++11 -fno-omit-frame-pointer -fpermissive -Wwrite-strings -Wno-deprecated -Wunused -g
 
-LIBFLAGS	= -lpthread -ljpeg -lz
+LIBFLAGS	= -lpthread -ljpeg -lz -lgif
 
 CORE_OBJ=	$(CORE_OBJ_DIR)/Tuple.o 			\
 		$(CORE_OBJ_DIR)/Color.o 				\
@@ -86,7 +86,8 @@ CORE_OBJ=	$(CORE_OBJ_DIR)/Tuple.o 			\
 		$(CORE_OBJ_DIR)/Scene.o					\
 		$(CORE_OBJ_DIR)/Image.o					\
 		$(CORE_OBJ_DIR)/RowDispatcher.o			\
-		$(CORE_OBJ_DIR)/AxisAlignedBox.o
+		$(CORE_OBJ_DIR)/BoundingBox.o			\
+		$(CORE_OBJ_DIR)/Profiling.o
 
 UTILS_OBJ= $(UTILS_OBJ_DIR)/Utils.o				\
 		$(UTILS_OBJ_DIR)/ImageUtils.o			\
@@ -140,9 +141,6 @@ $(CORE_OBJ_DIR)/%.o: $(CORE_SRC_DIR)/%.cc $(CORE_SRC_DIR)/%.hh
 $(UTILS_OBJ_DIR)/%.o: $(UTILS_SRC_DIR)/%.cc $(UTILS_SRC_DIR)/%.hh
 	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
 
-$(TINYTHREAD_OBJ_DIR)/%.o: $(TINYTHREAD_SRC_DIR)/%.cpp $(TINYTHREAD_SRC_DIR)/%.h
-	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
-
 $(NETWORK_OBJ_DIR)/%.o: $(NETWORK_SRC_DIR)/%.cc $(NETWORK_SRC_DIR)/%.hh Renderer/Utils/Network/define.hh
 	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
 
@@ -188,8 +186,8 @@ Client:  $(CLIENT_OBJ) $(CORE_OBJ) $(UTILS_OBJ) $(NETWORK_OBJ) $(IO_OBJ)  Makefi
 Marcel: $(CORE_OBJ) $(UTILS_OBJ) $(IO_OBJ) Makefile Renderer/Marcel.o
 	$(CPP) $(CFLAGS) $(CORE_OBJ) $(UTILS_OBJ) $(IO_OBJ) Renderer/Marcel.o -o $@ $(LIBFLAGS)
 
-MyGlm: Renderer/Core/obj/Vector.o Renderer/Core/obj/RawVec3.o glm.o
-	$(CPP) $(CFLAGS) Renderer/Core/obj/Vector.o  Renderer/Core/obj/RawVec3.o glm.o -o $@ $(LIBFLAGS)
+MyGlm: Renderer/Core/obj/Vector.o Renderer/Core/obj/Point.o Renderer/Core/obj/RawVec3.o Renderer/Core/obj/Matrix.o glm.o
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) Renderer/Core/obj/Point.o Renderer/Core/obj/Vector.o Renderer/Core/obj/Matrix.o Renderer/Core/obj/RawVec3.o glm.o -o $@ $(LIBFLAGS)
 
 MakeTestScene: $(TEST_OBJ) Makefile
 	$(CPP) $(TEST_OBJ) -o $@
@@ -212,7 +210,7 @@ clean_obj:
 	@$(DEL) -f $(RENDERER_DIR)/server.o
 	@$(DEL) -f $(RENDERER_DIR)/client.o
 	@$(DEL) -f $(RENDERER_DIR)/Marcel.o
-	@$(DEL) -f *.stackdump core $(CORE_OBJ) $(SERVER_OBJ) $(CLIENT_OBJ) $(NET_OBJ) $(UTILS_OBJ) $(INTERFACE_OBJ) $(TINYTHREAD_OBJ) $(NETWORK_OBJ) $(TGA_OBJ) $(FLIC_OBJ)
+	@$(DEL) -f *.stackdump core $(CORE_OBJ) $(SERVER_OBJ) $(CLIENT_OBJ) $(NET_OBJ) $(UTILS_OBJ) $(INTERFACE_OBJ) $(NETWORK_OBJ) $(TGA_OBJ) $(FLIC_OBJ)
 	@$(DEL) -f $(CORE_OBJ_DIR)/*.gcno $(NET_OBJ_DIR)/*.gcno  $(INTERFACE_OBJ_DIR)/*.gcno $(TINYTHEAD_OBJ)/*.gcno
 	@$(DEL) -f $(CORE_OBJ_DIR)/*.gcda $(NET_OBJ_DIR)/*.gcda  $(INTERFACE_OBJ_DIR)/*.gcda $(TINYTHEAD_OBJ)/*.gcda
 	@echo "Done."

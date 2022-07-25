@@ -20,6 +20,9 @@ Polygon::Polygon(): Objet()
 	TriangleList     = new vector<Objet *>;
 	TriangleOctree   = NULL;
 	TriangleQuadTree = NULL;
+
+	x = y = z =  5000;
+	X = Y = Z = -5000;
 }
 
 Polygon::~Polygon()
@@ -43,6 +46,10 @@ Polygon::~Polygon()
 void Polygon::AddTriangle(Triangle *T) {
 	T->applyTransformation(InitialTransformation);
 	TriangleList->push_back(T);
+
+	x = MIN(x,T->x);	X = MAX(X,T->X);
+	y = MIN(y,T->y);	Y = MAX(Y,T->Y);
+	z = MIN(z,T->z);	Z = MAX(Z,T->Z);
 }
 
 Color Polygon::getColor(Point *P) {
@@ -62,33 +69,18 @@ int Polygon::Intersect(Tuple *C, Droite *D) {
 }
 
 int Polygon::CreateSmallestOctree(int level) {
-	x = y = z =  5000;
-	X = Y = Z = -5000;
-
-	Objet *m;
-	for (int yy = 0; yy < TriangleList->size(); yy++) {
-		m = TriangleList->at(yy);
-
-		if (m != NULL){
-			x = MIN(x,m->x);
-			X = MAX(X,m->X);
-			y = MIN(y,m->y);
-			Y = MAX(Y,m->Y);
-			z = MIN(z,m->z);
-			Z = MAX(Z,m->Z);
-		}
-	}
-
-	TriangleOctree = new Octree(x, X, y, Y, z, Z);
+	TriangleOctree = new Octree(x,X,y,Y,z,Z);
 	TriangleOctree->setMaxLevel(level);
 
-	for (int yy = 0; yy < TriangleList->size(); yy++) {
-		m = TriangleList->at(yy);
-		if (m != NULL)
-			TriangleOctree->Add(m);
+	for(Objet*& t: *TriangleList){ 
+		if (t != NULL)
+			TriangleOctree->Add((Triangle *)t);
 	}
 	int c = 0;
 	TriangleOctree->UpdateCount(&c);
+
+	//cout << endl;
+	//((nTree*)TriangleOctree)->Visualize();
 
 	return 1;
 }
@@ -101,48 +93,36 @@ int Polygon::CreateSmallestQuadtree(int level) {
 
 	CullingBox *C;
 
-	Objet *m;
-
-	for (int yy = 0; yy < TriangleList->size(); yy++) {
-		m = TriangleList->at(yy);
+	for(Objet*& m: *TriangleList){
 		if (m != NULL)
 		{
 			C = m->getCullingBox();
+			xm = MIN(xm,C->getXmin());
+			Xm = MAX(Xm,C->getXmax());
 
-			if (C->getXmin() < xm)
-				xm = C->getXmin();
-
-			if (C->getXmax() > Xm)
-				Xm = C->getXmax();
-
-			if (C->getYmin() < ym)
-				ym = C->getYmin();
-
-			if (C->getYmax() > Ym)
-				Ym = C->getYmax();
+			ym = MIN(ym,C->getYmin());
+			Ym = MAX(Ym,C->getYmax());
 		}
 	}
 
 	TriangleQuadTree = new QuadTree(xm, Xm, ym, Ym);
 	TriangleQuadTree->setMaxLevel(level);
 
-	for (int yy = 0; yy < TriangleList->size(); yy++) {
-		m = TriangleList->at(yy);
+	for(Objet*& m: *TriangleList){
 		if (m != NULL)
-			TriangleQuadTree->Add(m);
+			TriangleQuadTree->Add((Triangle *)m);
 	}
 
 	int c = 0;
 	TriangleQuadTree->UpdateCount(&c);
+
 	return 1;
 }
 
 void Polygon::applyTransformation(Matrix *M) {
-	Objet *m;
-	for (int yy = 0; yy < TriangleList->size(); yy++) {
-		m = TriangleList->at(yy);
-		if (m != NULL)
-			m->applyTransformation(M);
+	for(Objet*& t: *TriangleList){ 
+		if (t != NULL)
+			t->applyTransformation(M);
 	}
 
 	if (TriangleOctree != NULL)

@@ -3,7 +3,8 @@
 *.3ds
 *.3DS
 *.tgz
-F4U1/*
+docs/*
+.vscode/
 Marcel
 Client
 Server

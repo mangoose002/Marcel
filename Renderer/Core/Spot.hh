@@ -25,7 +25,7 @@ namespace Marcel{
     void setTarget(Point);
     
     Color getIntensity(Point *);
-    int   CanIlluminate(Point *);
+    bool  CanIlluminate(Point *);
   };
 }
 #endif

@@ -8,6 +8,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <iostream>
+#include <chrono>
 #include <stdio.h>
 
 #include <sys/types.h>
@@ -18,7 +19,6 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-//using namespace tthread;
 namespace Marcel{
 
 Socket::Socket() {
@@ -62,7 +62,6 @@ bool Socket::bind ( const int port ){
 	return true;
 }
 
-
 bool Socket::listen() {
 	mode = SOCKET_SERVER;
 
@@ -74,7 +73,6 @@ bool Socket::listen() {
 
 	return true;
 }
-
 
 bool Socket::accept (Socket *sock) {
 	mode = SOCKET_SERVER;
@@ -88,37 +86,31 @@ bool Socket::accept (Socket *sock) {
 		sock->m_sock = l_sock;
 		return true;
 	}
+
+	return false;
 }
 
-bool Socket::send(const char* s, int size){
-	//lock_guard<mutex> lock(mMutex);
-	timeval *dm = new timeval;
-    timeval *fm = new timeval;
+int Socket::send(const char* s, int size){
+	auto start = std::chrono::steady_clock::now();
 
-    gettimeofday(dm, NULL);
   	int bytes = ::send(m_sock,s,size,0);
 
 	if (bytes < 0)
 		throw SocketException("Unable to write on socket");
 	else{
-		gettimeofday(fm, NULL);
-		Socket::time_spent_send += (fm->tv_sec * 1000000 + fm->tv_usec - dm->tv_sec * 1000000 - dm->tv_usec);
-		delete dm;
-		delete fm;
-		return bytes;
+		auto end = std::chrono::steady_clock::now();
+		std::chrono::duration<double> elapsed_seconds = end-start;
+		
+		Socket::time_spent_send += elapsed_seconds.count();
 	}
+	return 0;
 }
-bool Socket::send ( const std::string s ){
-	send(s.c_str(),s.size());
+int Socket::send ( const std::string s ){
+	return send(s.c_str(),s.size());
 }
 
 int Socket::recv(char **message, const int size){
-	//lock_guard<mutex> lock(mMutex);
-    timeval *dm = new timeval;
-    timeval *fm = new timeval;
-
-
-    gettimeofday(dm, NULL);
+	auto start = std::chrono::steady_clock::now();
   	int bytes = ::recv(m_sock,message,size,0);
 
 	if (bytes < 0){
@@ -127,10 +119,9 @@ int Socket::recv(char **message, const int size){
 		throw SocketException("Peer is disconnected");
 	}
 	else {
-		gettimeofday(fm, NULL);
-		Socket::time_spent_recv += (fm->tv_sec * 1000000 + fm->tv_usec - dm->tv_sec * 1000000 - dm->tv_usec);
-		delete dm;
-		delete fm;
+		auto end = std::chrono::steady_clock::now();
+		std::chrono::duration<double> elapsed_seconds = end-start;
+		Socket::time_spent_recv += elapsed_seconds.count();
 
 		return bytes;
 	}
@@ -145,6 +136,8 @@ int Socket::recv ( std::string& s ) {
 		s = buf;
 		return bytes;
 	}
+	
+	return 0;
 }
 
 bool Socket::connect ( const std::string host, const int port ) {

@@ -4,7 +4,7 @@
 #include "Core/Point.hh"
 #include "Core/Plan.hh"
 #include "Core/Vector.hh"
-#include "Core/Object.hh"
+//#include "Core/Object.hh"
 
 namespace Marcel{
 
@@ -21,6 +21,7 @@ private:
   int     XResolution;
   int     YResolution;
   double  focus;
+  bool    _isGenerated;
 
   void getViewPlaneCoordinatesFromPoint(Point,int*,int*);
   void getPointFromViewPlaneCoordinates(Point *,float,float);
@@ -32,9 +33,15 @@ private:
 
   void setResolution(int,int);
   Point getViewPoint(){ return ViewPoint; }
+  
   Point getTarget(){ return Target; }
+  void  setTarget(Point t);
+
   void LaunchRay(Ray *,float,float);
   void CreateCullingBox(Objet *);
+
+  bool isGenerated();
+  void isGenerated(bool);
 };
 }
 #endif

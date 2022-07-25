@@ -7,19 +7,19 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////
 // Derniere Modification: 07/26/2002                                 //
 ///////////////////////////////////////////////////////////////////////
-#include "Plan.hh"
-#include "Point.hh"
-#include "Vector.hh"
-#include "Droite.hh"
-#include "Ray.hh"
+#include "Core/Plan.hh"
+#include "Core/Point.hh"
+#include "Core/Vector.hh"
+#include "Core/Droite.hh"
+#include "Core/Ray.hh"
 
-#include "Object.hh"
+#include "Core/Object.hh"
 #include <iostream>
 #include <math.h>
 #include <stdlib.h>
 #include <sys/time.h>
 #include <vector>
-#include "Texture.hh"
+#include "Core/Texture.hh"
 
 // Constructeur et destructeur
 namespace Marcel{
@@ -239,11 +239,10 @@ namespace Marcel{
 		}
 	}
 
-	void Plan::applyTransformation(Matrix *M)
-	{
+	void Plan::applyTransformation(Matrix *M){
 		O = (*M) * O;
 		N = (*M) * N;
-
+		
 		N.Normalize();
 		d = -(N.x * O.x + N.y * O.y + O.z * N.z);
 		if (N.x != 0 || N.y != 0)

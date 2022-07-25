@@ -3,8 +3,8 @@ using namespace std;
 #include "Core/Ray.hh"
 
 namespace Marcel{
-    CullingBox::CullingBox()
-    {   xmin = ymin = 0;
+    CullingBox::CullingBox(){   
+        xmin = ymin = 0;
         xmax = ymax = 0;
     }
 
@@ -18,16 +18,13 @@ namespace Marcel{
     CullingBox::~CullingBox(){
     }
 
-    bool CullingBox::Test(Droite *R)
-    {
-        if (R->Level > 0)
-            return true;
-
-        if (R->x >= xmin && R->x <= xmax && R->y >= ymin && R->y <= ymax)
-            return true;
-
-
-        return false;
+    bool CullingBox::Test(Droite *R){
+        if(R->x < xmin) return false;
+        if(R->x > xmax) return false;
+        if(R->y < ymin) return false;
+        if(R->y > ymax) return false;
+ 
+        return true;
     }
 
     void CullingBox::setXValues(int x, int X) { xmin = x; xmax = X; }

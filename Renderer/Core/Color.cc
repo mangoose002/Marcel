@@ -48,21 +48,21 @@ namespace Marcel {
 		return 1;
 	}
 
-	Color operator*(Color A, Color C)	{
+	Color operator*(const Color &A, const Color &C)	{
 		return Color(A.R * C.R, A.G * C.G, A.B * C.B);
 	}
 
-	Color operator*(Color A, float C)	{
+	Color operator*(const Color &A, float C)	{
 		return Color(A.R * C, A.G * C, A.B * C);
 	}
 
-	Color operator*(float C, Color A)
+	Color operator*(float C, const Color &A)
 	{ return Color(A.R * C, A.G * C, A.B * C); }
 
-	Color operator+(Color A, Color C)
+	Color operator+(const Color &A, const Color &C)
 	{ return Color(A.R + C.R, A.G + C.G, A.B + C.B); }
 
-	Color operator/(Color A, int C)
+	Color operator/(const Color &A, int C)
 	{ return Color(A.R / C, A.G / C, A.B / C); }
 
 	ostream& operator<<(ostream& o, Color C)

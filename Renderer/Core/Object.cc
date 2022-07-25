@@ -9,12 +9,14 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////
 
 #include "Core/Object.hh"
-#include "Core/Vector.hh"
+
+/*#include "Core/Vector.hh"
 #include "Core/Ray.hh"
 #include "Core/Droite.hh"
 #include "Core/Point.hh"
 #include "Core/Texture.hh"
 #include "Core/CullingBox.hh"
+*/
 
 #include <vector>
 #include <iostream>
@@ -27,6 +29,7 @@ namespace Marcel{
     Objet::Objet() {
         Animate      = NULL;
         CullBox      = new CullingBox;
+        BBox         = new BoundingBox;
         Mat          = NULL;
 
         InitialTransformation = new Matrix(4, 4);
@@ -66,12 +69,13 @@ namespace Marcel{
         }
     }
 
-    void Objet::setColor(Color C)           { Colour = C;         }
+    void Objet::setColor(Color C)           { Colour = C;           }
     void Objet::setReflect(double R)        { Reflexion = R;        }
     void Objet::setRefract(double R)        { Refraction = R;       }
     void Objet::setDiffuse(double D)        { Diffuse = D;          }
     void Objet::setTrans(double T)          { Transparence = T;     }
     void Objet::setSurB(int S)              { SurBrillance = S;     }
+    void Objet::setName(string s)           { Name = s;}
 
     float Objet::getDiffuse()       {return Diffuse;}
     float Objet::getReflection()    {return Reflexion;}
@@ -83,7 +87,8 @@ namespace Marcel{
         else
             return Transparence;
     }
-    float Objet::getSurB()          {return SurBrillance;}
+    float Objet::getSurB()          { return SurBrillance;}
+    string Objet::getName()         { return Name; }
 
 
     void Objet::setMaterial(Material *m)                           { Mat = m;           }
@@ -97,14 +102,21 @@ namespace Marcel{
             return;
 
         applyTransformation(Animate->getTransformation(i));
-
     }
     ///////////////////////////////////////////////////////////////
-    bool Objet::TestCullingBox(Droite *R) { return CullBox->Test((Ray *)R);  }
-    void Objet::setCullingBoxValues(int a, int b, int c, int d) {
-        CullBox->setXValues(a, b);
-        CullBox->setYValues(c, d);
+    bool Objet::TestCullingBox(Droite *R) { 
+        if(R->Level > 0)
+            return true;
+        
+        return CullBox->Test((Ray *)R);  
     }
+    void Objet::setCullingBoxValues(int x, int X, int y, int Y) {
+        CullBox->setXValues(x, X);
+        CullBox->setYValues(y, Y);
+    }
+
+    //void Objet::CreateCullingBox(Camera *camera){
+    //}
 
     bool   Objet::isPolygon()         { return false;          }
     // this will be extended to other objects.

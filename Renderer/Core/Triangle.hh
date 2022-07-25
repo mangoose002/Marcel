@@ -9,6 +9,24 @@
 #include "Plan.hh"
 #include "Color.hh"
 #include "Matrix.hh"
+#include "Core/Octree.hh"
+
+struct OctreePosition{
+	int APosition;
+	int BPosition;
+	int CPosition;
+
+	OctreePosition(){
+		APosition = BPosition = CPosition = -1;
+	}
+
+	void Show(){
+		cout << "----------------" << endl;
+		cout << "A: " << APosition << endl;
+		cout << "B: " << BPosition << endl;
+		cout << "C: " << CPosition << endl;
+	}
+};
 
 namespace Marcel{
 	class Triangle : public Objet
@@ -47,7 +65,7 @@ namespace Marcel{
 		Plan   P;
 		double Area2;
 
-		int    TestIntersection(Droite *);
+		bool   TestIntersection(Droite *);
 		Vector computeShadedNormal(Point*);
 
 	public:
@@ -66,6 +84,8 @@ namespace Marcel{
 		Vector getNormal(Point *,Point *);
 		Point  computeUVW(Point *);
 		string isKindOf() { return "Triangle"; }
+
+		OctreePosition positionInOctree(Octree *);
 	};
 }
 #endif

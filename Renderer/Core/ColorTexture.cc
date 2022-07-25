@@ -21,7 +21,7 @@ namespace Marcel{
 	{
 		XTiling = x;
 		YTiling = y;
-		strcpy(ID, id);
+		ID = string(id);
 
 		map = NULL;
 

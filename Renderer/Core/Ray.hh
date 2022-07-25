@@ -14,6 +14,9 @@
 #include "Core/Color.hh"
 #include "Core/Droite.hh"
 
+#include <iostream>
+using namespace std;
+
 namespace Marcel{
 	class Ray: public Droite
 	{

@@ -7,7 +7,6 @@
 // Derniere Modification: 02/01/1999                                 //
 ///////////////////////////////////////////////////////////////////////
 
-
 #ifndef _OBJECT_HH_
 #define _OBJECT_HH_
 
@@ -18,12 +17,13 @@ using namespace std;
 #include "Core/Vector.hh"
 #include "Core/Point.hh"
 #include "Core/Color.hh"
-//#ifndef _TUPLE_H_
+#ifndef _TUPLE_HH_
 #include "Core/Tuple.hh"
-//#endif
+#endif
 #include "Core/Texture.hh"
-#include "Core/CullingBox.hh"
 
+#include "Core/CullingBox.hh"
+#include "Core/BoundingBox.hh"
 
 #include "Core/Animation.hh"
 #include "Core/Matrix.hh"
@@ -33,17 +33,17 @@ namespace Marcel{
     class Objet
     {
     protected:
-        int bump;      // Flags de Bump
+        int bump;           // Flags de Bump
+        string              Name;
 
         Material           *Mat;
 
         Matrix             *InitialTransformation;
         Animation          *Animate;
         CullingBox         *CullBox;
+        BoundingBox        *BBox;
 
         int mapping;
-        //Vector  ReflectV;
-        //Vector  RefractV;
         Vector  No;
 
         Color Colour;       // Couleur de l'objet
@@ -63,15 +63,12 @@ namespace Marcel{
         double z;
         double Z;
 
-	static uint64_t IntersectionNumber;
-	static uint64_t SuccessfulIntersectionNumber;
-
         Objet();
 
         virtual int    Intersect(Tuple*, Droite*) = 0;
         virtual void   applyTransformation(Matrix *) = 0;
         virtual string isKindOf() { return "Object"; }
-        virtual ~Objet() {};
+        virtual        ~Objet() {};
         virtual Color  getColor(Point*);
         virtual Vector getNormal(Point *,Point *);
         virtual Point  computeUVW(Point *){ return Point(0,0,0); }
@@ -86,12 +83,14 @@ namespace Marcel{
         void setDiffuse(double);
         void setSurB(int);
         void setColor(Color);
+        void setName(string);
 
         float  getDiffuse();
         float  getReflection();
         float  getRefraction();
         float  getTransparency();
         float  getSurB();
+        string getName();
 
         CullingBox*    getCullingBox();
 
@@ -101,6 +100,7 @@ namespace Marcel{
         Material *getMaterial(void);
 
         void setCullingBoxValues(int, int, int, int);
+        //void CreateCullingBox(Camera *);
 
         void setAnimation(Animation *);
         void addTransformation(Matrix);

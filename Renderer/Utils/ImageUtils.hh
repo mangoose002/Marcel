@@ -18,6 +18,7 @@ namespace Marcel{
     #define TGA_FORMAT 5
     #define FLI_FORMAT 6
     #define PNG_FORMAT 7
+    #define GIF_FORMAT 8
 
     #pragma pack(2) // Add this
     typedef struct                       /**** BMP file header structure ****/
@@ -75,19 +76,20 @@ namespace Marcel{
     private:
     	static int getFileExtension(string Filename);
 
-    	static bool readJPG(string, Color ***, int*,int*);
-    	static bool readPPM(string, Color ***, int*,int*);
-        static bool readBMP(string, Color ***, int*,int*);
-        static bool readTGA(string, Color ***, int*,int*);
-        static bool readFLI(string, Color ***, int*,int*);
-    	static bool readPNG(string, Color ***, int*,int*);
+    	static bool readJPG(const string, Color ***, int*,int*);
+    	static bool readPPM(const string, Color ***, int*,int*);
+        static bool readBMP(const string, Color ***, int*,int*);
+        static bool readTGA(const string, Color ***, int*,int*);
+        static bool readFLI(const string, Color ***, int*,int*);
+    	static bool readPNG(const string, Color ***, int*,int*);
+        static bool readGIF(const string, Color ***, int*,int*);
 
-    	static bool saveJPG(string, Color **,int,int);
-    	static bool savePPM(string, Color **,int,int);
-        static bool saveBMP(string, Color **,int,int);
+    	static bool saveJPG(const string, Color **,const int,const int);
+    	static bool savePPM(const string, Color **,const int,const int);
+        static bool saveBMP(const string, Color **,const int,const int);
     public:
-    	static bool readFile(string filename,Color ***,int*,int*);
-    	static bool saveFile(string filename,Color **,int,int);
+    	static bool readFile(const string filename,Color ***,int*,int*);
+    	static bool saveFile(const string filename,Color **,const int,const int);
     };
 }
 #endif

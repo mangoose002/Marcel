@@ -13,6 +13,7 @@
 #include "Core/Vector.hh"
 
 #include <iostream>
+using namespace std;
 
 namespace Marcel{
     class Droite 

@@ -12,8 +12,6 @@ using namespace std;
 #include <time.h>
 #include <errno.h>
 
-
-//using namespace tthread;
 namespace Marcel{
 
 	#define   AMBIENT	.4
@@ -32,13 +30,13 @@ namespace Marcel{
 
 		halfResX = ResX / 2;
 		halfResY = ResY / 2;
-		MAX_LEVEL = 5;
+		MAX_LEVEL = 2;
 
 		Cam    = scene->getCam();
 		Lookat = scene->getLookAt();
 
 		Vector V = (Lookat - Cam); V.Normalize();
-		Oeil = Cam - V * Cam.Distance(Lookat);
+		Eye = Cam - V * Cam.Distance(Lookat);
 		CX = Vector(-V.z, 0, V.x);
 		CY = CX / V;
 		CZ = V;
@@ -77,10 +75,10 @@ namespace Marcel{
 		if (CP->obj->getReflection() == 1) // Objet Brillant = Pas de diffsion
 			return Color(0, 0, 0);
 
-		Light *light;
+		///Light *light;
 
-		Ray R;  // Ray local de raytracing
-		Point P2; // Point Local d'intersection
+		Ray R;    // Local Ray
+		Point P2; // Local Intersection Point
 		Vector V, D, V1;
 		Vector N1,N2;
 		Vector Bias;
@@ -95,10 +93,9 @@ namespace Marcel{
 		R.setOrigin(&(CP->intersection));
 		R.Level = 1;
 
-		for(vector<Light *>::iterator it = scene->getLightList()->begin(); it != scene->getLightList()->end(); ++it) {
-			light = (*it);
+		for(Light*& light: *(scene->getLightList())){	
 
-			V = light->getOrigin() - CP->intersection; // Ray from the point to the source
+			V = light->getOrigin() - CP->intersection; // Ray from the intersection point to the source
 
 			if (V.x != 0 || V.y != 0)
 				N1 = Vector(V.y, -V.x, 0);
@@ -128,7 +125,7 @@ namespace Marcel{
 
 				R.setDirection(&V);
 
-				if (light->CanIlluminate(&(CP->intersection))){
+				if (light->CanIlluminate(&(CP->intersection)) == true){
 					NL = CP->normal * V;
 					if (NL < 1e-8)
 						NL = 0;
@@ -136,20 +133,18 @@ namespace Marcel{
 					if (CP->obj->getSurB() != 0){
 						VN = 2 * NL;
 
-						D.x = V.x - VN * CP->normal.x; // On determine le rayon reflechi
-						D.y = V.y - VN * CP->normal.y;
-						D.z = V.z - VN * CP->normal.z;
+						D = V - VN * CP->normal; // Reflected ray direction
 
 						NS = (Ra->D.x * D.x + Ra->D.y * D.y + Ra->D.z * D.z);
 						if (NS > 1e-8)
-							NS = pow(NS, CP->obj->getSurB()); // On calcul la surbrillance
+							NS = pow(NS, CP->obj->getSurB());
 						else
 							NS = 0;
 					} else{
 						NS = 0;
 					}
 
-					if (light->CastShadows == true && scene->is_Raycasting()==false){
+					if (light->CastShadows == true && scene->is_Raycasting() == false){
 						scene->getOctree()->ComputeLight(&R, t, &NS, &NL, NULL);
 					}
 
@@ -170,7 +165,7 @@ namespace Marcel{
 		int x;
 		int blksize = Dispatcher->getBlockSize();
 		Ray Vision;
-		Vision.setOrigin(&Oeil);
+		Vision.setOrigin(&Eye);
 		Vision.setColor(1, 1, 1);
 
 		for (x = 0; x < width; x += blksize){
@@ -182,7 +177,7 @@ namespace Marcel{
 	void Raytracer::ComputeAliasedPixel(int x, int y, int invert, int computepixel)
 	{
 		Ray Vision;
-		Vision.setOrigin(&Oeil);
+		Vision.setOrigin(&Eye);
 		Point GlobalP;
 		Vector GlobalV;
 
@@ -236,7 +231,7 @@ namespace Marcel{
 			else
 				scene->getQuadTree()->Intersect(R, &CP);
 
-			if (CP.t > 1e-8 && CP.t < 1e7){ // Le point d'intersection est valide et il est + pret
+			if (CP.t > 1e-8 && CP.t < 1e8){ // Le point d'intersection est valide et il est + pret
 				Color Intensity;
 
 				CP.intersection = R->getPoint(CP.t);
@@ -254,14 +249,14 @@ namespace Marcel{
 
 				if(scene->is_Raycasting() == false)
 					if (CP.obj->getMaterial() != NULL)
-						if (CP.obj->getMaterial()->getReflection() > 0){ // Objet Reflechissant
+						if (CP.obj->getMaterial()->getReflection() > 0){ // Reflective object
 							Ray Reflechi = (CP.obj)->Reflect(R, &(CP.intersection), &(CP.normal));
 							Intensity = Intensity + Raytrace(&Reflechi, (CP.obj)) * CP.obj->getMaterial()->getReflection();
 						}
 
 				if(scene->is_Raycasting() == false)
 					if (CP.obj->getMaterial() != NULL)
-						if (CP.obj->getMaterial()->getTransparency() > 0) { // Objet Transparent
+						if (CP.obj->getMaterial()->getTransparency() > 0) { // Transparent Object
 							Ray Refracte = (CP.obj)->Refract(R, &(CP.intersection), &(CP.normal));
 							Intensity = Intensity + Raytrace(&Refracte, (CP.obj)) * CP.obj->getMaterial()->getTransparency();
 						}
@@ -277,7 +272,7 @@ namespace Marcel{
 	void Raytracer::Standard()
 	{
 		Ray Vision;
-		Vision.setOrigin(&Oeil);
+		Vision.setOrigin(&Eye);
 		Vision.setColor(1, 1, 1);
 		int blksize = Dispatcher->getBlockSize();
 		int y = scene->getImage()->Height()-1;
@@ -317,7 +312,7 @@ namespace Marcel{
 	void Raytracer::Progressive(char** table,int passe){
 		int blksize = Dispatcher->getBlockSize();
 		Ray Vision;
-		Vision.setOrigin(&Oeil);
+		Vision.setOrigin(&Eye);
 		Vision.setColor(1, 1, 1);
 
 		int y = 0;
