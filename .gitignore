@@ -1,4 +1,5 @@
 *.o
+*.obj
 *.jpg
 *.3ds
 *.3DS
@@ -6,6 +7,10 @@
 docs/*
 .vscode/
 Marcel
+Marcel.exe
 Client
+Client.exe
 Server
+Server.exe
 MyGlm
+MyGlm.exe
