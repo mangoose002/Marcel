@@ -6,6 +6,7 @@
 *.tgz
 *.fbx
 docs/*
+.vscode/*
 Marcel
 Marcel.exe
 Client
