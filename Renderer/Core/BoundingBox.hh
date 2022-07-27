@@ -19,6 +19,7 @@ namespace Marcel{
 
             bool hit(Droite*,double&,double&);
             bool contains(Point&);
+            bool contains(BoundingBox&);
 
             void setBoundingMin(Point min) { BoundingMin = min; Center = BoundingMin.Middle(BoundingMax); }
             void setBoundingMax(Point max) { BoundingMax = max; Center = BoundingMin.Middle(BoundingMax); }
@@ -26,6 +27,9 @@ namespace Marcel{
             Point getBoundingMin(){ return BoundingMin; }
             Point getBoundingMax(){ return BoundingMax; }
             Point getCenter()     { return Center;      }
+            
+            void  show();
+        
     };
 }
 #endif

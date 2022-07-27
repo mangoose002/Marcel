@@ -121,7 +121,8 @@ namespace Marcel{
     bool   Objet::isPolygon()         { return false;          }
     // this will be extended to other objects.
 
-    CullingBox* Objet::getCullingBox() { return CullBox; }
-    Vector      Objet::getNormal(Point *P, Point *UVW){ return No;   }
-    Color       Objet::getColor(Point *P){ return Colour; }
+    CullingBox*  Objet::getCullingBox() { return CullBox; }
+    BoundingBox* Objet::getBoundingBox() { return BBox; }
+    Vector       Objet::getNormal(Point *P, Point *UVW){ return No;   }
+    Color        Objet::getColor(Point *P){ return Colour; }
 }

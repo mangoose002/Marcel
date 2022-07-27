@@ -110,15 +110,15 @@ namespace Marcel{
 		Ray R;
 		Tuple c;
 
-		TablePoint[0] = Point(O->x, O->y, O->z);
-		TablePoint[1] = Point(O->x, O->y, O->Z);
-		TablePoint[2] = Point(O->x, O->Y, O->z);
-		TablePoint[3] = Point(O->x, O->Y, O->Z);
+		TablePoint[0] = Point(O->getBoundingBox()->getBoundingMin().x, O->getBoundingBox()->getBoundingMin().y, O->getBoundingBox()->getBoundingMin().z);
+		TablePoint[1] = Point(O->getBoundingBox()->getBoundingMin().x, O->getBoundingBox()->getBoundingMin().y, O->getBoundingBox()->getBoundingMax().z);
+		TablePoint[2] = Point(O->getBoundingBox()->getBoundingMin().x, O->getBoundingBox()->getBoundingMax().y, O->getBoundingBox()->getBoundingMin().z);
+		TablePoint[3] = Point(O->getBoundingBox()->getBoundingMin().x, O->getBoundingBox()->getBoundingMax().y, O->getBoundingBox()->getBoundingMax().z);
 
-		TablePoint[4] = Point(O->X, O->y, O->z);
-		TablePoint[5] = Point(O->X, O->y, O->Z);
-		TablePoint[6] = Point(O->X, O->Y, O->z);
-		TablePoint[7] = Point(O->X, O->Y, O->Z);
+		TablePoint[4] = Point(O->getBoundingBox()->getBoundingMax().x, O->getBoundingBox()->getBoundingMin().y, O->getBoundingBox()->getBoundingMin().z);
+		TablePoint[5] = Point(O->getBoundingBox()->getBoundingMax().x, O->getBoundingBox()->getBoundingMin().y, O->getBoundingBox()->getBoundingMax().z);
+		TablePoint[6] = Point(O->getBoundingBox()->getBoundingMax().x, O->getBoundingBox()->getBoundingMax().y, O->getBoundingBox()->getBoundingMin().z);
+		TablePoint[7] = Point(O->getBoundingBox()->getBoundingMax().x, O->getBoundingBox()->getBoundingMax().y, O->getBoundingBox()->getBoundingMax().z);
 
 		int xmin, xmax;
 		int ymin, ymax;

@@ -20,8 +20,6 @@ namespace Marcel {
 		FAR_BOTTOM_RIGHT  = 1,
 		FAR_TOP_RIGHT     = 3,
 		FAR_TOP_LEFT      = 7,
-
-		MAX_NODE_COUNT = 8 //any defined node should be < 8 && > 0
 	};
 
 	class Octree : public nTree
@@ -41,6 +39,7 @@ namespace Marcel {
 		~Octree();
 
 		int  ComputeLight(Droite *D, double t, double *NS, double *NL, Objet *Ob);
+		void Deduplicate();
 
 		double getHeight();
 		double getWidth();

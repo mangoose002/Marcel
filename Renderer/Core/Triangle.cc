@@ -36,32 +36,40 @@ namespace Marcel{
 		N.Normalize();
 		P = Plan(A, N);
 
-		x = y = z = 5000; 
-		X = Y = Z = -5000;
-		/////////////
-		x = MIN(x,a.x); X=MAX(X,a.x);
-		x = MIN(x,b.x); X=MAX(X,b.x);
-		x = MIN(x,c.x); X=MAX(X,c.x);
-
-		y = MIN(y,a.y); Y=MAX(Y,a.y);
-		y = MIN(y,b.y); Y=MAX(Y,b.y);
-		y = MIN(y,c.y); Y=MAX(Y,c.y);
-
-		z = MIN(z,a.z); Z=MAX(Z,a.z);
-		z = MIN(z,b.z); Z=MAX(Z,b.z);
-		z = MIN(z,c.z); Z=MAX(Z,c.z);
-
 		Area2 = sqrt(n);
 
 		abn /= Area2;
 		acn /= Area2;
 		bcn /= Area2;
 
-		Center = Point((x + X) / 2, (y + Y) / 2, (z + Z) / 2);
-		R2     = ((x - X) * (x - X) + (y - Y) * (y - Y) + (z - Z) * (z - Z)) / 4.0;
+		defineBoundingBox();
 	}
 
 	Triangle::~Triangle() {
+	}
+
+	void Triangle::defineBoundingBox(){
+		double x, y, z; x=y=z=  5000; 
+		double X, Y, Z; X=Y=Z= -5000;
+		/////////////
+		x = MIN(x,A.x); X=MAX(X,A.x);
+		x = MIN(x,B.x); X=MAX(X,B.x);
+		x = MIN(x,C.x); X=MAX(X,C.x);
+
+		y = MIN(y,A.y); Y=MAX(Y,A.y);
+		y = MIN(y,B.y); Y=MAX(Y,B.y);
+		y = MIN(y,C.y); Y=MAX(Y,C.y);
+
+		z = MIN(z,A.z); Z=MAX(Z,A.z);
+		z = MIN(z,B.z); Z=MAX(Z,B.z);
+		z = MIN(z,C.z); Z=MAX(Z,C.z);
+
+		Point min = Point(x,y,z);
+		Point max = Point(X,Y,Z);
+		BBox->setBoundingMin(min);
+		BBox->setBoundingMax(max);
+		R2 = min.SquareDistance(&max) / 4.0;
+		Center = BBox->getCenter();
 	}
 
 	int Triangle::Intersect(Tuple *CP, Droite *Dr) {
@@ -273,25 +281,7 @@ namespace Marcel{
 		N.Normalize();
 		P = Plan(A, N);
 
-		// Initialize bounding box.
-		x = y = z = 5000; 
-		X = Y = Z = -5000;
-
-		x = MIN(x,A.x); X=MAX(X,A.x);
-		x = MIN(x,B.x); X=MAX(X,B.x);
-		x = MIN(x,C.x); X=MAX(X,C.x);
-
-		y = MIN(y,A.y); Y=MAX(Y,A.y);
-		y = MIN(y,B.y); Y=MAX(Y,B.y);
-		y = MIN(y,C.y); Y=MAX(Y,C.y);
-
-		z = MIN(z,A.z); Z=MAX(Z,A.z);
-		z = MIN(z,B.z); Z=MAX(Z,B.z);
-		z = MIN(z,C.z); Z=MAX(Z,C.z);
-		
-
-		Center = Point((x + X) / 2, (y + Y) / 2, (z + Z) / 2);
-		R2     = ((x - X) * (x - X) + (y - Y) * (y - Y) + (z - Z) * (z - Z)) / 4.0;
+		defineBoundingBox();
 	}
 
 	void  Triangle::setShadingNormal(int n, Vector v) {
@@ -357,6 +347,8 @@ namespace Marcel{
 				positions.CPosition = i;	
 			}
 		}
+
+		//positions.Show();
 		return positions;
 	}
 }

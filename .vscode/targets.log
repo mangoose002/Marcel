@@ -1,0 +1,1335 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for x86_64-pc-cygwin
+ 
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri Jul 22 21:33:05 2022
+
+# Variables
+
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+SYSTEMDRIVE = C:
+# environment
+LC_ALL = C
+# environment
+WINDOWS_TRACING_FLAGS = 3
+# makefile (from 'Makefile', line 59)
+CORE_OBJ = $(CORE_OBJ_DIR)/Tuple.o $(CORE_OBJ_DIR)/Color.o $(CORE_OBJ_DIR)/RawVec3.o $(CORE_OBJ_DIR)/Ray.o $(CORE_OBJ_DIR)/Vector.o $(CORE_OBJ_DIR)/Point.o $(CORE_OBJ_DIR)/Omni.o $(CORE_OBJ_DIR)/Light.o $(CORE_OBJ_DIR)/Spot.o $(CORE_OBJ_DIR)/Object.o $(CORE_OBJ_DIR)/Plan.o $(CORE_OBJ_DIR)/Droite.o $(CORE_OBJ_DIR)/Raytrace.o $(CORE_OBJ_DIR)/Texture.o $(CORE_OBJ_DIR)/ColorTexture.o $(CORE_OBJ_DIR)/GrayTexture.o $(CORE_OBJ_DIR)/Triangle.o $(CORE_OBJ_DIR)/Polygon.o $(CORE_OBJ_DIR)/Matrix.o $(CORE_OBJ_DIR)/Animation.o $(CORE_OBJ_DIR)/KeyFrame.o $(CORE_OBJ_DIR)/nTree.o $(CORE_OBJ_DIR)/Octree.o $(CORE_OBJ_DIR)/QuadTree.o $(CORE_OBJ_DIR)/Material.o $(CORE_OBJ_DIR)/CullingBox.o $(CORE_OBJ_DIR)/Camera.o $(CORE_OBJ_DIR)/Scene.o $(CORE_OBJ_DIR)/Image.o $(CORE_OBJ_DIR)/RowDispatcher.o $(CORE_OBJ_DIR)/BoundingBox.o $(CORE_OBJ_DIR)/Profiling.o
+# makefile (from 'Makefile', line 14)
+AR = ar
+# environment
+USERPROFILE = C:\Users\LENOVO
+# makefile (from 'Makefile', line 119)
+FLIC_OBJ = $(FLIC_OBJ_DIR)/flic.o
+# makefile (from 'Makefile', line 129)
+IO_OBJ = $(I_OBJ) $(O_OBJ)
+# environment
+LOCALAPPDATA = C:\Users\LENOVO\AppData\Local
+# makefile (from 'Makefile', line 21)
+TOOLS_DIR = tools
+# environment
+ACPATH = C:\Program Files (x86)\Lenovo\Access Connections\
+# environment
+VSCODE_CWD = C:\Users\LENOVO\AppData\Local\Programs\Microsoft VS Code
+# makefile (from 'Makefile', line 96)
+NETWORK_OBJ = $(NETWORK_OBJ_DIR)/Socket.o $(NETWORK_OBJ_DIR)/UdpSocket.o $(NETWORK_OBJ_DIR)/MessageSocket.o
+# environment
+SYSTEMROOT = C:\WINDOWS
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+PSMODULEPATH = C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\
+# default
+MAKE_COMMAND := make
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_16792_ORNRHZCUWUPCLBUF
+# makefile (from 'Makefile', line 25)
+NETWORK_SRC_DIR = $(RENDERER_DIR)/Utils/Network
+# makefile (from 'Makefile', line 48)
+INCLUDE_DIR = -I$(RENDERER_DIR) -I$(3DS_SRC_DIR) -I$(OBJ_SRC_DIR) -I$(TGA_SRC_DIR) -I$(FLIC_SRC_DIR)
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from 'Makefile', line 24)
+UTILS_SRC_DIR = $(RENDERER_DIR)/Utils
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\LENOVO\AppData\Roaming\Code\CachedData\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+# environment
+LANG = C
+# default
+.LOADED := 
+# environment
+TMP = /cygdrive/c/Users/LENOVO/AppData/Local/Temp
+# default
+.INCLUDE_DIRS = /usr/include /usr/include
+# makefile (from 'Makefile', line 133)
+PROGRAM = Marcel
+# makefile
+MAKEFLAGS = pqrR
+# makefile (from 'Makefile', line 23)
+CORE_SRC_DIR = $(RENDERER_DIR)/Core
+# environment
+ONEDRIVE = C:\Users\LENOVO\OneDrive
+# makefile
+CURDIR := /home/mangoose/Marcel
+# makefile (from 'Makefile', line 92)
+UTILS_OBJ = $(UTILS_OBJ_DIR)/Utils.o $(UTILS_OBJ_DIR)/ImageUtils.o $(UTILS_OBJ_DIR)/MessageHandler.o
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# makefile (from 'Makefile', line 29)
+INTERFACE_OBJ_DIR = $(INTERFACE_SRC_DIR)/obj
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+PROGRAMFILES = C:\Program Files
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+!C: = c:\cygwin64\home\mangoose\Marcel
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# makefile (from 'Makefile', line 20)
+RENDERER_DIR = Renderer
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from 'Makefile', line 105)
+SERVER_OBJ = $(CORE_OBJ_DIR)/Color.o $(CORE_OBJ_DIR)/Image.o $(CORE_OBJ_DIR)/RowDispatcher.o $(NETWORK_OBJ_DIR)/ServerSocket.o
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# makefile (from 'Makefile', line 33)
+OBJ_SRC_DIR = $(RENDERER_DIR)/Utils/IOFormat/obj
+# environment
+VSCODE_PID = 16792
+# environment
+GIT_SSH = C:\Program Files\TortoiseSVN\bin\TortoisePlink.exe
+# makefile (from 'Makefile', line 110)
+CLIENT_OBJ = $(NETWORK_OBJ_DIR)/ClientSocket.o $(CORE_OBJ_DIR)/RowDispatcherClient.o $(CORE_OBJ_DIR)/SceneClient.o $(CORE_OBJ_DIR)/ImageClient.o
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# makefile (from 'Makefile', line 15)
+RANLIB = ranlib
+# makefile (from 'Makefile', line 38)
+JPG_SRC_DIR = $(RENDERER_DIR)/Utils/IOFormat/jpg
+# automatic
+*F = $(notdir $*)
+# makefile (from 'Makefile', line 131)
+LIB = 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# makefile (from 'Makefile', line 115)
+TGA_OBJ = $(TGA_OBJ_DIR)/tga.o $(TGA_OBJ_DIR)/tgaread.o $(TGA_OBJ_DIR)/tgawrite.o
+# environment
+VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePackId":"8e1a08857df44efaeace20a1f4372f40.fr","_translationsConfigFile":"C:\\Users\\LENOVO\\AppData\\Roaming\\Code\\clp\\8e1a08857df44efaeace20a1f4372f40.fr\\tcf.json","_cacheRoot":"C:\\Users\\LENOVO\\AppData\\Roaming\\Code\\clp\\8e1a08857df44efaeace20a1f4372f40.fr","_resolvedLanguagePackCoreLocation":"C:\\Users\\LENOVO\\AppData\\Roaming\\Code\\clp\\8e1a08857df44efaeace20a1f4372f40.fr\\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a","_corruptedFile":"C:\\Users\\LENOVO\\AppData\\Roaming\\Code\\clp\\8e1a08857df44efaeace20a1f4372f40.fr\\corrupted.info","_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-cygwin
+# environment
+PROGRAMDATA = C:\ProgramData
+# default
+SHELL := /bin/sh
+# environment
+HOMEPATH = \Users\LENOVO
+# environment
+PLATFORMIO_CALLER = vscode
+# default
+MAKECMDGOALS := all
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# makefile (from 'Makefile', line 19)
+DOC_DIR = docs
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+ESET_OPTIONS = $(subst ,,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               )
+# environment
+MAKELEVEL := 0
+# makefile (from 'Makefile', line 52)
+TGZ_FILENAME = 'Marcel-'`date +"%Y-%m-%d"`'.tgz'
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /cygdrive/c/Program Files (x86)/Intel/iCLS Client:/cygdrive/c/Program Files/Intel/iCLS Client:/cygdrive/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/cygdrive/c/ProgramData/Oracle/Java/javapath:/cygdrive/c/WINDOWS/system32:/cygdrive/c/WINDOWS:/cygdrive/c/WINDOWS/System32/Wbem:/cygdrive/c/WINDOWS/System32/WindowsPowerShell/v1.0:/cygdrive/c/Program Files (x86)/Intel/OpenCL SDK/3.0/bin/x86:/cygdrive/c/Program Files (x86)/Intel/OpenCL SDK/3.0/bin/x64:/cygdrive/c/Program Files/ThinkPad/Bluetooth Software:/cygdrive/c/Program Files/ThinkPad/Bluetooth Software/syswow64:/cygdrive/c/Program Files (x86)/Calibre2:/cygdrive/c/Program Files/TortoiseSVN/bin:/cygdrive/c/Program Files/OpenVPN/bin:/cygdrive/c/wamp/bin/php/php5.5.12:/cygdrive/c/Program Files (x86)/Lenovo/Access Connections:/cygdrive/c/Program Files (x86)/Windows Kits/8.1/Windows Performance Toolkit:/cygdrive/c/Program Files (x86)/QuickTime/QTSystem:/cygdrive/c/Program Files (x86)/PuTTY:/cygdrive/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/cygdrive/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/cygdrive/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/cygdrive/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/cygdrive/c/WINDOWS/System32/OpenSSH:/cygdrive/c/Program Files/Git/cmd:/cygdrive/c/Program Files/Intel/WiFi/bin:/cygdrive/c/Program Files/Common Files/Intel/WirelessCommon:/cygdrive/c/Program Files/TortoiseGit/bin:/cygdrive/c/Program Files/nodejs:/cygdrive/c/Program Files/WireGuard:/cygdrive/c/Program Files/Graphviz/bin:/usr/bin:/cygdrive/c/Users/LENOVO/AppData/Local/Programs/Python/Python36/Scripts:/cygdrive/c/Users/LENOVO/AppData/Local/Programs/Python/Python36:/cygdrive/c/Users/LENOVO/AppData/Local/Microsoft/WindowsApps:/cygdrive/c/Program Files/Intel/WiFi/bin:/cygdrive/c/Program Files/Common Files/Intel/WirelessCommon:/cygdrive/c/Users/LENOVO/AppData/Roaming/npm:/cygdrive/c/Users/LENOVO/AppData/Local/Programs/Microsoft VS Code/bin
+# environment
+COMPUTERNAME = GUANAJUATO
+# default
+MAKEFILES := 
+# makefile (from 'Makefile', line 122)
+OBJ_OBJ = $(OBJ_OBJ_DIR)/tiny_obj_loader.o
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 57)
+LIBFLAGS = -lpthread -ljpeg -lz -lgif
+# environment
+PROMPT = $P$G
+# makefile (from 'Makefile', line 12)
+CPP = g++
+# environment
+LOGONSERVER = \\GUANAJUATO
+# makefile (from 'Makefile', line 120)
+PNG_OBJ = $(PNG_OBJ_DIR)/lodepng.o
+# environment
+USERNAME = mangoose
+# makefile (from 'Makefile', line 44)
+FLIC_OBJ_DIR = $(FLIC_SRC_DIR)/obj
+# makefile (from 'Makefile', line 34)
+TGA_SRC_DIR = $(RENDERER_DIR)/Utils/IOFormat/tga
+# environment
+COMMONPROGRAMFILES = C:\Program Files\Common Files
+# automatic
+?F = $(notdir $?)
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+NO_PROXY = 127.0.0.1
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# makefile (from 'Makefile', line 27)
+UTILS_OBJ_DIR = $(UTILS_SRC_DIR)/obj
+# automatic
++F = $(notdir $+)
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERDOMAIN = GUANAJUATO
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+VS140COMNTOOLS = C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\
+# environment
+OS = Windows_NT
+# makefile (from 'Makefile', line 26)
+CORE_OBJ_DIR = $(CORE_SRC_DIR)/obj
+# environment
+FP_NO_HOST_CHECK = NO
+# environment
+PLATFORMIO_PATH = C:\Users\LENOVO\.platformio\penv\Scripts;C:\Users\LENOVO\.platformio\penv;C:\Users\LENOVO\.platformio\python3;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\ThinkPad\Bluetooth Software\;C:\Program Files\ThinkPad\Bluetooth Software\syswow64;C:\Program Files (x86)\Calibre2\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\OpenVPN\bin;C:\wamp\bin\php\php5.5.12;C:\Program Files (x86)\Lenovo\Access Connections\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\PuTTY\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\TortoiseGit\bin;C:\Program Files\nodejs\;C:\Program Files\WireGuard\;C:\Program Files\Graphviz\bin;C:\cygwin64\bin;C:\Users\LENOVO\AppData\Local\Programs\Python\Python36\Scripts;C:\Users\LENOVO\AppData\Local\Programs\Python\Python36\;C:\Users\LENOVO\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\LENOVO\AppData\Roaming\npm;C:\Users\LENOVO\AppData\Local\Programs\Microsoft VS Code\bin;;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\ThinkPad\Bluetooth Software\;C:\Program Files\ThinkPad\Bluetooth Software\syswow64;C:\Program Files (x86)\Calibre2\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\OpenVPN\bin;C:\wamp\bin\php\php5.5.12;C:\Program Files (x86)\Lenovo\Access Connections\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\PuTTY\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\TortoiseGit\bin;C:\Program Files\nodejs\;C:\Program Files\WireGuard\;C:\Program Files\Graphviz\bin;C:\cygwin64\bin;C:\Users\LENOVO\AppData\Local\Programs\Python\Python36\Scripts;C:\Users\LENOVO\AppData\Local\Programs\Python\Python36\;C:\Users\LENOVO\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\LENOVO\AppData\Roaming\npm;C:\Users\LENOVO\AppData\Local\Programs\Microsoft VS Code\bin;
+# makefile (from 'Makefile', line 100)
+TOOLS_OBJ = $(ASCLOADER_OBJ) $(3DSLOADER_OBJ)
+# makefile (from 'Makefile', line 103)
+TEST_OBJ = $(CORE_OBJ_DIR)/MakeScene.o
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from 'Makefile', line 17)
+ECHO = echo
+# default
+MAKE_VERSION := 4.3
+# environment
+TVT = C:\Program Files (x86)\Lenovo
+# makefile (from 'Makefile', line 36)
+PNG_SRC_DIR = $(RENDERER_DIR)/Utils/IOFormat/png
+# makefile (from 'Makefile', line 35)
+FLIC_SRC_DIR = $(RENDERER_DIR)/Utils/IOFormat/flic
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# makefile (from 'Makefile', line 13)
+DEL = rm -f
+# makefile (from 'Makefile', line 126)
+O_OBJ = $(TGA_OBJ) $(FLIC_OBJ) $(PNG_OBJ)
+# environment
+USERDOMAIN_ROAMINGPROFILE = GUANAJUATO
+# environment
+COMMPATH = C:\Program Files\Lenovo\Communications Utility
+# environment
+NUMBER_OF_PROCESSORS = 4
+# environment
+PUBLIC = C:\Users\Public
+# makefile (from 'Makefile', line 121)
+3DS_OBJ = $(3DS_OBJ_DIR)/l3ds.o
+# environment
+APPDATA = C:\Users\LENOVO\AppData\Roaming
+# makefile (from 'Makefile', line 55)
+CFLAGS = -std=gnu++11 -fno-omit-frame-pointer -fpermissive -Wwrite-strings -Wno-deprecated -Wunused -g
+# environment
+HOMEDRIVE = C:
+# makefile (from 'Makefile', line 42)
+OBJ_OBJ_DIR = $(OBJ_SRC_DIR)/obj
+# makefile (from 'Makefile', line 124)
+I_OBJ = $(3DS_OBJ) $(OBJ_OBJ)
+# environment
+PROCESSOR_ARCHITECTURE = AMD64
+# makefile (from 'Makefile', line 32)
+3DS_SRC_DIR = $(RENDERER_DIR)/Utils/IOFormat/3ds
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+PLATFORMIO_IDE = 2.5.0
+# makefile (from 'Makefile', line 28)
+NETWORK_OBJ_DIR = $(NETWORK_SRC_DIR)/obj
+# environment
+HOME = /home/mangoose
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# makefile (from 'Makefile', line 50)
+BIN_DIR = bin
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+TEMP = /cygdrive/c/Users/LENOVO/AppData/Local/Temp
+# environment
+S3C_VIEWER = C:\Program Files\Acute3D\Smart3DCapture Viewer\
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\0ae98414ad0d9c7d28fffada35881052-1.69.1-main-sock
+# environment
+TERM = xterm-256color
+# makefile (from 'Makefile', line 45)
+PNG_OBJ_DIR = $(PNG_SRC_DIR)/obj
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# makefile (from 'Makefile', line 43)
+TGA_OBJ_DIR = $(TGA_SRC_DIR)/obj
+# default
+SUFFIXES := 
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+SESSIONNAME = Console
+# makefile (from 'Makefile', line 37)
+BMP_SRC_DIR = $(RENDERER_DIR)/Utils/IOFormat/bmp
+# makefile (from 'Makefile', line 16)
+STRIP = strip
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
+# environment
+PROCESSOR_REVISION = 3d04
+# environment
+WINDOWS_TRACING_LOGFILE = C:\BVTBin\Tests\installpackage\csilogfile.log
+# environment
+SVN_SSH = C:\Program Files\TortoiseSVN\bin\TortoisePlink.exe
+# makefile (from 'Makefile', line 41)
+3DS_OBJ_DIR = $(3DS_SRC_DIR)/obj
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 61 Stepping 4, GenuineIntel
+# variable set hash-table stats:
+# Load=156/1024=15%, Rehash=0, Collisions=211/646=33%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# Renderer/Utils/IOFormat/flic (device 444418292, inode 5348024558021727): No files, no impossibilities so far.
+# Renderer/Utils/IOFormat/png (device 444418292, inode 6192449488153701): No files, no impossibilities so far.
+# Renderer/Core (device 444418292, inode 11540474045656075): 75 files, no impossibilities so far.
+# Renderer/Utils (device 444418292, inode 17451448556579930): No files, no impossibilities so far.
+# . (device 444418292, inode 6755399441566704): 44 files, no impossibilities.
+# Renderer/Utils/Network (device 444418292, inode 16044073673026717): No files, no impossibilities so far.
+# Renderer/Utils/IOFormat/3ds (device 444418292, inode 6473924464864348): No files, no impossibilities so far.
+# Renderer/Utils/IOFormat/obj (device 444418292, inode 5910974511443042): No files, no impossibilities so far.
+# Renderer/Utils/IOFormat/tga (device 444418292, inode 4503599628156828): No files, no impossibilities so far.
+
+# 119 files, no impossibilities in 9 directories.
+
+# Implicit Rules
+
+Renderer/Core/obj/%.o: Renderer/Core/%.cc Renderer/Core/%.hh
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+Renderer/Utils/obj/%.o: Renderer/Utils/%.cc Renderer/Utils/%.hh
+#  recipe to execute (from 'Makefile', line 142):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+Renderer/Utils/Network/obj/%.o: Renderer/Utils/Network/%.cc Renderer/Utils/Network/%.hh Renderer/Utils/Network/define.hh
+#  recipe to execute (from 'Makefile', line 145):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+Renderer/Utils/IOFormat/tga/obj/%.o: Renderer/Utils/IOFormat/tga/%.c
+#  recipe to execute (from 'Makefile', line 148):
+	$(CPP) -g -Wwrite-strings -I$(TGA_SRC_DIR) -c $< -o $@
+
+Renderer/Utils/IOFormat/flic/obj/%.o: Renderer/Utils/IOFormat/flic/%.cc
+#  recipe to execute (from 'Makefile', line 150):
+	$(CPP) -g -std=c++11 -c -I$(FLIC_SRC_DIR)/.. $< -o $@
+
+Renderer/Utils/IOFormat/png/obj/%.o: Renderer/Utils/IOFormat/png/%.cpp
+#  recipe to execute (from 'Makefile', line 152):
+	$(CPP) -g -std=c++11 -c -I$(PNG_SRC_DIR)/.. $< -o $@
+
+Renderer/Utils/IOFormat/3ds/obj/%.o: Renderer/Utils/IOFormat/3ds/%.cc
+#  recipe to execute (from 'Makefile', line 154):
+	$(CPP) -g -std=c++11 -c -I$(3DS_SRC_DIR)/.. $< -o $@
+
+Renderer/Utils/IOFormat/obj/obj/%.o: Renderer/Utils/IOFormat/obj/%.cc
+#  recipe to execute (from 'Makefile', line 156):
+	$(CPP) -g -std=c++11 -c -I$(OBJ_SRC_DIR)/.. $< -o $@
+
+# 8 implicit rules, 0 (0.0%) terminal.
+# Files
+
+Marcel: Renderer/Core/obj/Tuple.o Renderer/Core/obj/Color.o Renderer/Core/obj/RawVec3.o Renderer/Core/obj/Ray.o Renderer/Core/obj/Vector.o Renderer/Core/obj/Point.o Renderer/Core/obj/Omni.o Renderer/Core/obj/Light.o Renderer/Core/obj/Spot.o Renderer/Core/obj/Object.o Renderer/Core/obj/Plan.o Renderer/Core/obj/Droite.o Renderer/Core/obj/Raytrace.o Renderer/Core/obj/Texture.o Renderer/Core/obj/ColorTexture.o Renderer/Core/obj/GrayTexture.o Renderer/Core/obj/Triangle.o Renderer/Core/obj/Polygon.o Renderer/Core/obj/Matrix.o Renderer/Core/obj/Animation.o Renderer/Core/obj/KeyFrame.o Renderer/Core/obj/nTree.o Renderer/Core/obj/Octree.o Renderer/Core/obj/QuadTree.o Renderer/Core/obj/Material.o Renderer/Core/obj/CullingBox.o Renderer/Core/obj/Camera.o Renderer/Core/obj/Scene.o Renderer/Core/obj/Image.o Renderer/Core/obj/RowDispatcher.o Renderer/Core/obj/BoundingBox.o Renderer/Core/obj/Profiling.o Renderer/Utils/obj/Utils.o Renderer/Utils/obj/ImageUtils.o Renderer/Utils/obj/MessageHandler.o Renderer/Utils/IOFormat/3ds/obj/l3ds.o Renderer/Utils/IOFormat/obj/obj/tiny_obj_loader.o Renderer/Utils/IOFormat/tga/obj/tga.o Renderer/Utils/IOFormat/tga/obj/tgaread.o Renderer/Utils/IOFormat/tga/obj/tgawrite.o Renderer/Utils/IOFormat/flic/obj/flic.o Renderer/Utils/IOFormat/png/obj/lodepng.o Makefile Renderer/Marcel.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-22 21:30:50.8194042
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/15=0%
+#  recipe to execute (from 'Makefile', line 187):
+	$(CPP) $(CFLAGS) $(CORE_OBJ) $(UTILS_OBJ) $(IO_OBJ) Renderer/Marcel.o -o $@ $(LIBFLAGS)
+
+dist:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 227):
+	tar -zcvf  $(TGZ_FILENAME) --exclude=*.o --exclude=*.tab.* --exclude=pov_lex.c --exclude=asc.lex.c --exclude=*.output --exclude=*~ *
+
+# Not a target:
+Renderer/Core/Light.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:23.4074543
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Tuple.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-16 07:08:25.7694836
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Animation.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:35.5794291
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Utils/IOFormat/obj/obj/tiny_obj_loader.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/Core/obj/Ray.o: Renderer/Core/Ray.cc Renderer/Core/Ray.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Ray'
+#  Last modified 2022-07-22 21:29:35.4658801
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/obj/Camera.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/obj/QuadTree.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/Core/obj/Droite.o: Renderer/Core/Droite.cc Renderer/Core/Droite.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Droite'
+#  Last modified 2022-07-22 21:29:49.8695669
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/server.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Octree.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 18:56:14.946913
+#  File has been updated.
+#  Successfully updated.
+
+Renderer/Core/obj/Color.o: Renderer/Core/Color.cc Renderer/Core/Color.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Color'
+#  Last modified 2022-07-22 21:29:31.5656292
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+Renderer/Core/obj/Omni.o: Renderer/Core/Omni.cc Renderer/Core/Omni.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Omni'
+#  Last modified 2022-07-22 21:29:40.6216679
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+Renderer/test.o: Renderer/test.cc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 168):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/Matrix.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-08 15:01:07.9305489
+#  File has been updated.
+#  Successfully updated.
+
+Client: Renderer/Utils/Network/obj/ClientSocket.o Renderer/Core/obj/RowDispatcherClient.o Renderer/Core/obj/SceneClient.o Renderer/Core/obj/ImageClient.o Renderer/Core/obj/Tuple.o Renderer/Core/obj/Color.o Renderer/Core/obj/RawVec3.o Renderer/Core/obj/Ray.o Renderer/Core/obj/Vector.o Renderer/Core/obj/Point.o Renderer/Core/obj/Omni.o Renderer/Core/obj/Light.o Renderer/Core/obj/Spot.o Renderer/Core/obj/Object.o Renderer/Core/obj/Plan.o Renderer/Core/obj/Droite.o Renderer/Core/obj/Raytrace.o Renderer/Core/obj/Texture.o Renderer/Core/obj/ColorTexture.o Renderer/Core/obj/GrayTexture.o Renderer/Core/obj/Triangle.o Renderer/Core/obj/Polygon.o Renderer/Core/obj/Matrix.o Renderer/Core/obj/Animation.o Renderer/Core/obj/KeyFrame.o Renderer/Core/obj/nTree.o Renderer/Core/obj/Octree.o Renderer/Core/obj/QuadTree.o Renderer/Core/obj/Material.o Renderer/Core/obj/CullingBox.o Renderer/Core/obj/Camera.o Renderer/Core/obj/Scene.o Renderer/Core/obj/Image.o Renderer/Core/obj/RowDispatcher.o Renderer/Core/obj/BoundingBox.o Renderer/Core/obj/Profiling.o Renderer/Utils/obj/Utils.o Renderer/Utils/obj/ImageUtils.o Renderer/Utils/obj/MessageHandler.o Renderer/Utils/Network/obj/Socket.o Renderer/Utils/Network/obj/UdpSocket.o Renderer/Utils/Network/obj/MessageSocket.o Renderer/Utils/IOFormat/3ds/obj/l3ds.o Renderer/Utils/IOFormat/obj/obj/tiny_obj_loader.o Renderer/Utils/IOFormat/tga/obj/tga.o Renderer/Utils/IOFormat/tga/obj/tgaread.o Renderer/Utils/IOFormat/tga/obj/tgawrite.o Renderer/Utils/IOFormat/flic/obj/flic.o Renderer/Utils/IOFormat/png/obj/lodepng.o Makefile Renderer/client.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 184):
+	$(CPP) $(CFLAGS) $(CORE_OBJ) $(CLIENT_OBJ) $(UTILS_OBJ) $(NETWORK_OBJ) $(IO_OBJ) Renderer/client.o -o $@ $(LIBFLAGS)
+
+Renderer/Core/obj/Polygon.o: Renderer/Core/Polygon.cc Renderer/Core/Polygon.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Polygon'
+#  Last modified 2022-07-22 21:30:03.9826569
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/obj/GenericObject.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Droite.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 10:37:52.3146032
+#  File has been updated.
+#  Successfully updated.
+
+MyGlm: Renderer/Core/obj/Vector.o Renderer/Core/obj/Point.o Renderer/Core/obj/RawVec3.o Renderer/Core/obj/Matrix.o glm.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 190):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) Renderer/Core/obj/Point.o Renderer/Core/obj/Vector.o Renderer/Core/obj/Matrix.o Renderer/Core/obj/RawVec3.o glm.o -o $@ $(LIBFLAGS)
+
+# Not a target:
+Renderer/Core/Polygon.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 14:03:03.8871401
+#  File has been updated.
+#  Successfully updated.
+
+Renderer/Core/obj/Vector.o: Renderer/Core/Vector.cc Renderer/Core/Vector.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Vector'
+#  Last modified 2022-07-22 21:29:37.3438923
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/obj/BoundingBox.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/Core/obj/Matrix.o: Renderer/Core/Matrix.cc Renderer/Core/Matrix.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Matrix'
+#  Last modified 2022-07-22 21:30:06.388712
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 21:29:25.2399144
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Texture.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-21 09:04:26.1960552
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/obj/Material.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/GrayTexture.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-21 10:34:13.2425606
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Octree.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 21:33:05.1342269
+#  File has been updated.
+#  Successfully updated.
+
+Renderer/Core/obj/Animation.o: Renderer/Core/Animation.cc Renderer/Core/Animation.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Animation'
+#  Last modified 2022-07-22 21:30:08.3797547
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Utils/IOFormat/tga/obj/tga.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Ray.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 10:37:47.5542193
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Utils/obj/Utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Texture.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-21 09:04:04.6352777
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Utils/Network/obj/Socket.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/KeyFrame.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:36.4571267
+#  File has been updated.
+#  Successfully updated.
+
+test_udp_server: test_udp_server.o Renderer/Utils/Network/obj/Socket.o Renderer/Utils/Network/obj/UdpSocket.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CPP) $(CFLAGS) $(NETWORK_OBJ_DIR)/Socket.o $(NETWORK_OBJ_DIR)/UdpSocket.o test_udp_server.o -o $@
+
+Renderer/Core/obj/Texture.o: Renderer/Core/Texture.cc Renderer/Core/Texture.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Texture'
+#  Last modified 2022-07-22 21:29:55.4737814
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+Renderer/Marcel.o: Renderer/Marcel.cc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 165):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/Omni.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 07:28:54.9370752
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/obj/Image.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/ColorTexture.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:35.8844806
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/nTree.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 21:29:06.6129084
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Matrix.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-09 08:04:24.8160728
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Utils/Network/obj/ServerSocket.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Plan.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:37.1996291
+#  File has been updated.
+#  Successfully updated.
+
+clean: clean_obj clean_src
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean_src:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 219):
+	@echo "Cleaning sources files..."
+	@$(DEL) $(TOOLS_SRC_DIR)/*~ $(CORE_SRC_DIR)/*~ $(NET_SRC_DIR)/*~ 
+	@echo "Done."
+
+# Not a target:
+Renderer/Core/Color.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-07 14:39:39.9929955
+#  File has been updated.
+#  Successfully updated.
+
+Renderer/Core/obj/Plan.o: Renderer/Core/Plan.cc Renderer/Core/Plan.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Plan'
+#  Last modified 2022-07-22 21:29:48.0375986
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/obj/ImageClient.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Animation.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:22.5612574
+#  File has been updated.
+#  Successfully updated.
+
+clean_obj:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 209):
+	@echo "Cleaning obj files..."
+	@$(DEL) -f $(RENDERER_DIR)/server.o
+	@$(DEL) -f $(RENDERER_DIR)/client.o
+	@$(DEL) -f $(RENDERER_DIR)/Marcel.o
+	@$(DEL) -f *.stackdump core $(CORE_OBJ) $(SERVER_OBJ) $(CLIENT_OBJ) $(NET_OBJ) $(UTILS_OBJ) $(INTERFACE_OBJ) $(NETWORK_OBJ) $(TGA_OBJ) $(FLIC_OBJ)
+	@$(DEL) -f $(CORE_OBJ_DIR)/*.gcno $(NET_OBJ_DIR)/*.gcno  $(INTERFACE_OBJ_DIR)/*.gcno $(TINYTHEAD_OBJ)/*.gcno
+	@$(DEL) -f $(CORE_OBJ_DIR)/*.gcda $(NET_OBJ_DIR)/*.gcda  $(INTERFACE_OBJ_DIR)/*.gcda $(TINYTHEAD_OBJ)/*.gcda
+	@echo "Done."
+
+test_udp_client.o: test_udp_client.cc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 174):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/obj/Profiling.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/obj/RowDispatcher.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/obj/MakeScene.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Ray.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:24.7504054
+#  File has been updated.
+#  Successfully updated.
+
+glm.o: glm.cpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 177):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Utils/IOFormat/3ds/obj/l3ds.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/Core/obj/RawVec3.o: Renderer/Core/RawVec3.cc Renderer/Core/RawVec3.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'RawVec3'
+#  Last modified 2022-07-22 21:29:33.7198691
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/Point.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:37.3304153
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Object.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 14:47:13.9362388
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Utils/obj/ImageUtils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Spot.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 07:27:37.0828537
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+test_udp_client.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Utils/IOFormat/tga/obj/tgawrite.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Marcel.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Triangle.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 12:59:27.6805778
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Spot.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 11:59:07.2068688
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Utils/Network/obj/UdpSocket.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/Core/obj/KeyFrame.o: Renderer/Core/KeyFrame.cc Renderer/Core/KeyFrame.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'KeyFrame'
+#  Last modified 2022-07-22 21:30:10.4022773
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/Omni.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 07:30:37.8367989
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/Core/obj/GrayTexture.o: Renderer/Core/GrayTexture.cc Renderer/Core/GrayTexture.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'GrayTexture'
+#  Last modified 2022-07-22 21:29:58.8938295
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/Tuple.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 09:22:07.6449378
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Raytrace.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-18 23:29:39.900513
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/GrayTexture.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:36.1944685
+#  File has been updated.
+#  Successfully updated.
+
+clean_marcel:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 206):
+	@$(DEL) -f core $(RENDERER_OBJ) $(CORE_SRC_SIR)/*.tab.* $(CORE_SRC_SIR)/*.output $(CORE_SRC_SIR)/pov_lex.c *~ $(DOC_DIR)/*.html $(DOC_DIR)/*.gif $(DOC_DIR)/*.db $(DOCIFIED_DIR)/*
+
+all: Marcel Server Client
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/15=0%
+
+Renderer/Core/obj/ColorTexture.o: Renderer/Core/ColorTexture.cc Renderer/Core/ColorTexture.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'ColorTexture'
+#  Last modified 2022-07-22 21:29:57.3236699
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+glm.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Light.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 07:28:42.9905315
+#  File has been updated.
+#  Successfully updated.
+
+Renderer/Core/obj/Triangle.o: Renderer/Core/Triangle.cc Renderer/Core/Triangle.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Triangle'
+#  Last modified 2022-07-22 21:30:01.3428639
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+Renderer/Core/obj/Octree.o: Renderer/Core/Octree.cc Renderer/Core/Octree.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Octree'
+#  Last modified 2022-07-22 21:30:15.1523975
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := Renderer/Core/obj/Octree.o
+# automatic
+# * := Octree
+# automatic
+# < := Renderer/Core/Octree.cc
+# automatic
+# + := Renderer/Core/Octree.cc Renderer/Core/Octree.hh
+# automatic
+# % := 
+# automatic
+# ^ := Renderer/Core/Octree.cc Renderer/Core/Octree.hh
+# automatic
+# ? := Renderer/Core/Octree.cc
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/25=8%
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/obj/RowDispatcherClient.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Utils/obj/MessageHandler.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Server: Renderer/Core/obj/Color.o Renderer/Core/obj/Image.o Renderer/Core/obj/RowDispatcher.o Renderer/Utils/Network/obj/ServerSocket.o Renderer/Utils/obj/Utils.o Renderer/Utils/obj/ImageUtils.o Renderer/Utils/obj/MessageHandler.o Renderer/Utils/Network/obj/Socket.o Renderer/Utils/Network/obj/UdpSocket.o Renderer/Utils/Network/obj/MessageSocket.o Renderer/Utils/IOFormat/3ds/obj/l3ds.o Renderer/Utils/IOFormat/obj/obj/tiny_obj_loader.o Renderer/Utils/IOFormat/tga/obj/tga.o Renderer/Utils/IOFormat/tga/obj/tgaread.o Renderer/Utils/IOFormat/tga/obj/tgawrite.o Renderer/Utils/IOFormat/flic/obj/flic.o Renderer/Utils/IOFormat/png/obj/lodepng.o Makefile Renderer/server.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 181):
+	$(CPP) $(CFLAGS) $(SERVER_OBJ) $(UTILS_OBJ) $(NETWORK_OBJ) $(IO_OBJ) Renderer/server.o -o $@ $(LIBFLAGS)
+
+# Not a target:
+Renderer/Core/Vector.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-07 14:40:03.6939491
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/RawVec3.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 13:09:54.6029956
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Raytrace.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-07 22:14:19.2170744
+#  File has been updated.
+#  Successfully updated.
+
+Renderer/client.o: Renderer/client.cc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 162):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+test: Renderer/Core/obj/Color.o Renderer/Core/obj/GenericObject.o Renderer/Utils/obj/ImageUtils.o Renderer/test.o Renderer/Utils/IOFormat/3ds/obj/l3ds.o Renderer/Utils/IOFormat/obj/obj/tiny_obj_loader.o Renderer/Utils/IOFormat/tga/obj/tga.o Renderer/Utils/IOFormat/tga/obj/tgaread.o Renderer/Utils/IOFormat/tga/obj/tgawrite.o Renderer/Utils/IOFormat/flic/obj/flic.o Renderer/Utils/IOFormat/png/obj/lodepng.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 196):
+	$(CPP) -g Renderer/Core/obj/Color.o Renderer/Core/obj/GenericObject.o Renderer/Utils/obj/ImageUtils.o $(IO_OBJ) Renderer/test.o -o $@ -ljpeg
+
+# Not a target:
+Renderer/Core/obj/CullingBox.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/server.o: Renderer/server.cc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 159):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/Plan.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-21 14:25:55.6571639
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Utils/IOFormat/tga/obj/tgaread.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Triangle.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 09:23:04.2854597
+#  File has been updated.
+#  Successfully updated.
+
+Renderer/Core/obj/Light.o: Renderer/Core/Light.cc Renderer/Core/Light.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Light'
+#  Last modified 2022-07-22 21:29:42.4066598
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+Renderer/Core/obj/Point.o: Renderer/Core/Point.cc Renderer/Core/Point.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Point'
+#  Last modified 2022-07-22 21:29:38.9701959
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Utils/Network/obj/ClientSocket.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/KeyFrame.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:23.3324584
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+test_udp_server.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/Core/obj/Object.o: Renderer/Core/Object.cc Renderer/Core/Object.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Object'
+#  Last modified 2022-07-22 21:29:45.966595
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/Color.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-07 14:38:46.1065578
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/ColorTexture.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-21 10:33:33.5943673
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/RawVec3.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 13:09:04.152216
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Point.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:51:24.2148678
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/nTree.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 18:40:45.3090306
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/obj/Scene.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Utils/IOFormat/png/obj/lodepng.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+test_udp_client: test_udp_client.o Renderer/Utils/Network/obj/Socket.o Renderer/Utils/Network/obj/UdpSocket.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 202):
+	$(CPP) $(CFLAGS) $(NETWORK_OBJ_DIR)/Socket.o $(NETWORK_OBJ_DIR)/UdpSocket.o test_udp_client.o -o $@
+
+# Not a target:
+Renderer/Core/obj/SceneClient.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Core/Vector.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-07 14:40:28.1792901
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/client.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/Core/obj/Spot.o: Renderer/Core/Spot.cc Renderer/Core/Spot.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Spot'
+#  Last modified 2022-07-22 21:29:44.1844746
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/test.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Renderer/Utils/IOFormat/flic/obj/flic.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+test_udp_server.o: test_udp_server.cc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 171):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/Object.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-22 14:46:54.808662
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Core/Droite.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 22:53:34.6591526
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Renderer/Utils/Network/obj/MessageSocket.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Renderer/Core/obj/nTree.o: Renderer/Core/nTree.cc Renderer/Core/nTree.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'nTree'
+#  Last modified 2022-07-22 21:30:12.8729289
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+MakeTestScene: Renderer/Core/obj/MakeScene.o Makefile
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 193):
+	$(CPP) $(TEST_OBJ) -o $@
+
+Renderer/Core/obj/Raytrace.o: Renderer/Core/Raytrace.cc Renderer/Core/Raytrace.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Raytrace'
+#  Last modified 2022-07-22 21:29:53.2989814
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# Not a target:
+Renderer/Core/Polygon.hh:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-21 12:00:43.5168912
+#  File has been updated.
+#  Successfully updated.
+
+Renderer/Core/obj/Tuple.o: Renderer/Core/Tuple.cc Renderer/Core/Tuple.hh
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Tuple'
+#  Last modified 2022-07-22 21:29:29.9961647
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 139):
+	$(CPP) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+
+# files hash-table stats:
+# Load=129/1024=13%, Rehash=0, Collisions=38/408=9%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 293 / storage = 5437 B / avg = 18 B
+# current buf: size = 8162 B / used = 5437 B / count = 293 / avg = 18 B
+
+# strcache performance: lookups = 462 / hit rate = 36%
+# hash-table stats:
+# Load=293/8192=4%, Rehash=0, Collisions=3/462=1%
+# Finished Make data base on Fri Jul 22 21:33:05 2022
+
+ 

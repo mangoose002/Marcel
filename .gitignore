@@ -4,8 +4,8 @@
 *.3ds
 *.3DS
 *.tgz
+*.fbx
 docs/*
-.vscode/
 Marcel
 Marcel.exe
 Client

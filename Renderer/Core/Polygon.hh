@@ -37,6 +37,7 @@ public:
   vector<Objet *>   *getTriangleList();
   void  DrawQuadTree(Image *,int,int);
   bool  isPolygon();
+  void  defineBoundingBox();
   string isKindOf() { return "Polygon"; }
 
   void  setMaxOctreeLevel(int);

@@ -41,12 +41,7 @@ namespace Marcel{
 		N2 = N1 / N;
 		N2.Normalize();
 
-		x = -5000; // Definition de la boite englobante.
-		X = 5000;
-		y = -5000;
-		Y = 5000;
-		z = -5000;
-		Z = 5000;
+		defineBoundingBox();
 	}
 
 	Plan::~Plan() {
@@ -71,12 +66,7 @@ namespace Marcel{
 		N2 = N1 / N;
 		N2.Normalize();
 
-		x = -5000; // Definition de la boite englobante.
-		X = 5000;
-		y = -5000;
-		Y = 5000;
-		z = -5000;
-		Z = 5000;
+		defineBoundingBox();
 	}
 
 	Plan::Plan(Point P, Vector V, char *MapFile, char *BumpFile, double Dif, double Rfl, double Rfr, double Tr, int Sur, double Bump): Objet()
@@ -98,12 +88,7 @@ namespace Marcel{
 		N2 = N1 / N;
 		N2.Normalize();
 
-		x = -5000; // Definition de la boite englobante.
-		X = 5000;
-		y = -5000;
-		Y = 5000;
-		z = -5000;
-		Z = 5000;
+		defineBoundingBox();
 	}
 
 	Plan::Plan(Point P, Vector V, Color C, Color C2, double Dif, double Rfl, double Rfr, double Tr, int Sur, double Bump): Objet()
@@ -126,12 +111,7 @@ namespace Marcel{
 		N2.Normalize();
 		d = -(N.x * O.x + N.y * O.y + O.z * N.z);
 
-		x = -5000; // Definition de la boite engloba      T = Dr->getPoint(t);
-		X = 5000;
-		y = -5000;
-		Y = 5000;
-		z = -5000;
-		Z = 5000;
+		defineBoundingBox();
 	}
 
 	Plan::Plan(Point P, Vector V): Objet()
@@ -154,12 +134,7 @@ namespace Marcel{
 		N2 = N1 / N;
 		N2.Normalize();
 
-		x = -5000; // Definition de la boite englobante.
-		X = 5000;
-		y = -5000;
-		Y = 5000;
-		z = -5000;
-		Z = 5000;
+		defineBoundingBox();
 	}
 
 
@@ -252,5 +227,14 @@ namespace Marcel{
 		N1.Normalize();
 		N2 = N1 / N;
 		N2.Normalize();
+
+		defineBoundingBox();
+	}
+
+	void Plan::defineBoundingBox(){
+		Point min=Point(-5000,-5000,-5000);
+		Point max=Point(5000,5000,5000);
+		BBox->setBoundingMin(min);
+		BBox->setBoundingMax(max);
 	}
 }

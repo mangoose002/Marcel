@@ -67,7 +67,6 @@ namespace Marcel{
 
 		bool   TestIntersection(Droite *);
 		Vector computeShadedNormal(Point*);
-
 	public:
 		Triangle(Point, Point, Point);
 		~Triangle();
@@ -77,6 +76,7 @@ namespace Marcel{
 
 		void   setShadingNormal(int, Vector);
 		void   setUVCoordinates(int, double, double);
+		void   defineBoundingBox();
 
 		bool   isTriangle();
 

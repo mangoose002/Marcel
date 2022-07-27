@@ -58,6 +58,7 @@ namespace Marcel {
 
 		int Intersect(Tuple*, Droite*); // Intersection avec une droite
 		void applyTransformation(Matrix *);
+		void defineBoundingBox();
 	};
 }
 

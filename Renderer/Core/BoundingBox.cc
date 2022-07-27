@@ -13,6 +13,7 @@ namespace Marcel{
         Center = min.Middle(max);
     }
 
+    //Based on https://github.com/AkeelMedina22/Ray-Tracer
     bool BoundingBox::hit(Droite *R,double &t_enter,double &t_exit){
         Point o(R->O);
         Point d(R->D); 
@@ -69,9 +70,27 @@ namespace Marcel{
         return (t_enter < t_exit && t_exit > 1e-8);
     }
 
+    void BoundingBox::show(){
+        cout << "BoundingBox" << endl;
+        cout << "Min:" << BoundingMin << endl;
+        cout << "Max:" << BoundingMax << endl;
+        cout << "Center: " << Center << endl;
+    }
+
+    //Based on https://github.com/AkeelMedina22/Ray-Tracer
     bool BoundingBox::contains(Point &P){
         return ((P.x > BoundingMin.x && P.x < BoundingMax.x) 
          && (P.y > BoundingMin.y && P.y < BoundingMax.y) 
-         && (P.z > BoundingMin.z && P.z < BoundingMax.z));   
+         && (P.z > BoundingMin.z && P.z < BoundingMax.z));
+    }
+
+    //Based on https://github.com/AkeelMedina22/Ray-Tracer
+    bool BoundingBox::contains(BoundingBox &b){
+       return ((BoundingMin.x < b.BoundingMin.x && b.BoundingMin.x < BoundingMax.x)
+       && (BoundingMin.x < b.BoundingMax.x && b.BoundingMax.x < BoundingMax.x)
+       && (BoundingMin.y < b.BoundingMin.y && b.BoundingMin.y < BoundingMax.y)
+       && (BoundingMin.y < b.BoundingMax.y && b.BoundingMax.y < BoundingMax.y)
+       && (BoundingMin.z < b.BoundingMin.z && b.BoundingMin.z < BoundingMax.z)
+       && (BoundingMin.z < b.BoundingMax.z && b.BoundingMax.z < BoundingMax.z));
     }
 }

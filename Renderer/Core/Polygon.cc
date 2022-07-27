@@ -21,8 +21,11 @@ Polygon::Polygon(): Objet()
 	TriangleOctree   = NULL;
 	TriangleQuadTree = NULL;
 
-	x = y = z =  5000;
-	X = Y = Z = -5000;
+	Point min = Point(5000,5000,5000);
+	Point max = Point(-5000,-5000,-5000);
+
+	BBox->setBoundingMin(min);
+	BBox->setBoundingMax(max);
 }
 
 Polygon::~Polygon()
@@ -41,15 +44,42 @@ Polygon::~Polygon()
 
 	if (TriangleQuadTree != NULL)
 		delete TriangleQuadTree;
-}
+} 
 
 void Polygon::AddTriangle(Triangle *T) {
 	T->applyTransformation(InitialTransformation);
 	TriangleList->push_back(T);
 
-	x = MIN(x,T->x);	X = MAX(X,T->X);
-	y = MIN(y,T->y);	Y = MAX(Y,T->Y);
-	z = MIN(z,T->z);	Z = MAX(Z,T->Z);
+	double x,y,z;
+	double X,Y,Z;
+
+	x = MIN(BBox->getBoundingMin().x,T->getBoundingBox()->getBoundingMin().x);
+	X = MAX(BBox->getBoundingMax().x,T->getBoundingBox()->getBoundingMax().x);
+	y = MIN(BBox->getBoundingMin().y,T->getBoundingBox()->getBoundingMin().y);
+	Y = MAX(BBox->getBoundingMax().y,T->getBoundingBox()->getBoundingMax().y);
+	z = MIN(BBox->getBoundingMin().z,T->getBoundingBox()->getBoundingMin().z);
+	Z = MAX(BBox->getBoundingMax().z,T->getBoundingBox()->getBoundingMax().z);
+
+	Point min = Point(x,y,z);
+	Point max = Point(X,Y,Z);
+	BBox->setBoundingMin(min);
+	BBox->setBoundingMax(max);
+}
+
+void Polygon::defineBoundingBox(){
+	double x,y,z; x=y=z=5000;
+	double X,Y,Z; X=Y=Z=-5000;
+
+	for(Objet*& t: *TriangleList){ 
+		x = MIN(x,t->getBoundingBox()->getBoundingMin().x);	X = MAX(X,t->getBoundingBox()->getBoundingMax().x);
+		y = MIN(y,t->getBoundingBox()->getBoundingMin().y);	Y = MAX(Y,t->getBoundingBox()->getBoundingMax().y);
+		z = MIN(z,t->getBoundingBox()->getBoundingMin().z);	Z = MAX(Z,t->getBoundingBox()->getBoundingMax().z);
+	}
+
+	Point min = Point(x,y,z);
+	Point max = Point(X,Y,Z);
+	BBox->setBoundingMin(min);
+	BBox->setBoundingMax(max);
 }
 
 Color Polygon::getColor(Point *P) {
@@ -57,19 +87,18 @@ Color Polygon::getColor(Point *P) {
 }
 
 int Polygon::Intersect(Tuple *C, Droite *D) {
-	//  Debug debug = Debug("Polygon::Intersect");
 	(*C).t = 1e8;
 
 	if (D->Level > 0)
-		TriangleOctree->Intersect(D, C); //, &O2, NULL);
+		TriangleOctree->Intersect(D, C);
 	else
-		TriangleQuadTree->Intersect(D, C); //, &O2, NULL);
+		TriangleQuadTree->Intersect(D, C);
 
 	return 1;
 }
 
 int Polygon::CreateSmallestOctree(int level) {
-	TriangleOctree = new Octree(x,X,y,Y,z,Z);
+	TriangleOctree = new Octree(BBox->getBoundingMin(),BBox->getBoundingMax());
 	TriangleOctree->setMaxLevel(level);
 
 	for(Objet*& t: *TriangleList){ 

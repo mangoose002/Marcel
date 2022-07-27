@@ -183,81 +183,33 @@ namespace Marcel{
 		return BBox.hit(Dr,t_enter,t_exit);
 	}
 
+	void Octree::Deduplicate(){
+		if(ObjectList->size() > 0){
+			//cout << "Before: " << ObjectList->size() << endl;
+			sort( (*ObjectList).begin(), (*ObjectList).end() );
+			(*ObjectList).erase( unique( (*ObjectList).begin(), (*ObjectList).end() ), (*ObjectList).end() );
+			//cout << "After: " << ObjectList->size() << endl;
+		}
+
+		for(int i=0;i<8;i++){
+			if(O[i] != NULL){
+				((Octree *)O[i])->Deduplicate();
+			}
+		}
+	}
+
 	int Octree::CheckObject(Objet *o){
-		Point Center = BBox.getCenter();
+		Point _min = o->getBoundingBox()->getBoundingMin();
+		Point _max = o->getBoundingBox()->getBoundingMax();
+		BoundingBox oBbox(_min,_max);
 
-		double Xmin = BBox.getBoundingMin().x;
-		double Xmax = BBox.getCenter().x;
-		double Ymin = BBox.getBoundingMin().y;
-		double Ymax = BBox.getCenter().y;
-		double Zmin = BBox.getBoundingMin().z;
-		double Zmax = BBox.getCenter().z;
-		if (o->x >= Xmin && o->X <= Xmax && o->y >= Ymin && o->Y <= Ymax && o->z >= Zmin && o->Z <= Zmax)
-			return 0;
-
-		Xmin = BBox.getCenter().x;
-		Xmax = BBox.getBoundingMax().x;
-		Ymin = BBox.getBoundingMin().y;
-		Ymax = BBox.getCenter().y;
-		Zmin = BBox.getBoundingMin().z;
-		Zmax = BBox.getCenter().z;
-		if (o->x >= Xmin && o->X <= Xmax && o->y >= Ymin && o->Y <= Ymax && o->z >= Zmin && o->Z <= Zmax)
-			return 1;
-
-		Xmin = BBox.getBoundingMin().x;
-		Xmax = BBox.getCenter().x;
-		Ymin = BBox.getCenter().y;
-		Ymax = BBox.getBoundingMax().y;
-		Zmin = BBox.getBoundingMin().z;
-		Zmax = BBox.getCenter().z;
-		if (o->x >= Xmin && o->X <= Xmax && o->y >= Ymin && o->Y <= Ymax && o->z >= Zmin && o->Z <= Zmax)
-			return 2;
-
-		Xmin = BBox.getCenter().x;
-		Xmax = BBox.getBoundingMax().x;
-		Ymin = BBox.getCenter().y;
-		Ymax = BBox.getBoundingMax().y;
-		Zmin = BBox.getBoundingMin().z;
-		Zmax = BBox.getCenter().z;
-		if (o->x >= Xmin && o->X <= Xmax && o->y >= Ymin && o->Y <= Ymax && o->z >= Zmin && o->Z <= Zmax)
-			return 3;
-
-		Xmin = BBox.getBoundingMin().x;
-		Xmax = BBox.getCenter().x;
-		Ymin = BBox.getBoundingMin().y;
-		Ymax = BBox.getCenter().y;
-		Zmin = BBox.getCenter().z;
-		Zmax = BBox.getBoundingMax().z;
-		if (o->x >= Xmin && o->X <= Xmax && o->y >= Ymin && o->Y <= Ymax && o->z >= Zmin && o->Z <= Zmax)
-			return 4;
-
-		Xmin = BBox.getCenter().x;
-		Xmax = BBox.getBoundingMax().x;
-		Ymin = BBox.getBoundingMin().y;
-		Ymax = BBox.getCenter().y;
-		Zmin = BBox.getCenter().z;
-		Zmax = BBox.getBoundingMax().z;
-		if (o->x >= Xmin && o->X <= Xmax && o->y >= Ymin && o->Y <= Ymax && o->z >= Zmin && o->Z <= Zmax)
-			return 5;
-
-		Xmin = BBox.getBoundingMin().x;
-		Xmax = BBox.getCenter().x;
-		Ymin = BBox.getCenter().y;
-		Ymax = BBox.getBoundingMax().y;
-		Zmin = BBox.getCenter().z;
-		Zmax = BBox.getBoundingMax().z;
-		if (o->x >= Xmin && o->X <= Xmax && o->y >= Ymin && o->Y <= Ymax && o->z >= Zmin && o->Z <= Zmax)
-			return 6;
-
-		Xmin = BBox.getCenter().x;
-		Xmax = BBox.getBoundingMax().x;
-		Ymin = BBox.getCenter().y;
-		Ymax = BBox.getBoundingMax().y;
-		Zmin = BBox.getCenter().z;
-		Zmax = BBox.getBoundingMax().z;
-		if (o->x >= Xmin && o->X <= Xmax && o->y >= Ymin && o->Y <= Ymax && o->z >= Zmin && o->Z <= Zmax)
-			return 7;
-
+		for(int i=0;i<8;i++){
+			if(O[i] != NULL){
+				if(((Octree *)O[i])->getBoundingBox().contains(oBbox)){
+					return i;
+				}
+			}
+		}
 		return -1;
 	}
 

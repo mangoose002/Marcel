@@ -595,6 +595,8 @@ namespace Marcel{
 				if (mObject->isPolygon()){
 					// Create Octree for polygons.
 					((Polygon *)mObject)->CreateSmallestOctree(MAX_OCTREE_LEVEL);
+					//cout << "Octree Before: " << ((Polygon *)mObject)->getOctree()->getTotalCount() << endl;
+
 					// Create Quadtree for polygons.
 					((Polygon *)mObject)->CreateSmallestQuadtree(MAX_QUADTREE_LEVEL);
 				}
@@ -609,6 +611,16 @@ namespace Marcel{
 				OctreeScene->Add(mObject);
 				QuadTreeScene->Add(mObject);
 			}
+
+			for(Objet*& mObject: *ObjectList){
+				if(mObject->isPolygon()){
+					((Polygon *)mObject)->getOctree()->Deduplicate();
+					int c = 0;
+					((Polygon *)mObject)->getOctree()->UpdateCount(&c);
+					//cout << "Octree After: " << ((Polygon *)mObject)->getOctree()->getTotalCount() << endl;
+				}
+			}
+			OctreeScene->Deduplicate();
 
 			if (FrameNumber > 1)
 				File->setFrame(i);
@@ -670,30 +682,26 @@ namespace Marcel{
 
 	void Scene::CreateSmallestOctree()
 	{
-		double x = 50000;
-		double X = -50000;
-		double y = 50000;
-		double Y = -50000;
-		double z = 50000;
-		double Z = -50000;
+		double x = 50000;		double X = -50000;
+		double y = 50000;		double Y = -50000;
+		double z = 50000;		double Z = -50000;
 
 		for(Objet*& m: *ObjectList){
-			if (m != NULL)
-			{
-				if (m->x < x)	x = m->x;
-				if (m->X > X)	X = m->X;
-				if (m->y < y)	y = m->y;
-				if (m->Y > Y)	Y = m->Y;
-				if (m->z < z)	z = m->z;
-				if (m->Z > Z)	Z = m->Z;
+			if (m != NULL){
+				x = MIN(x,m->getBoundingBox()->getBoundingMin().x);
+				X = MAX(X,m->getBoundingBox()->getBoundingMax().x);
+				y = MIN(y,m->getBoundingBox()->getBoundingMin().y);
+				Y = MAX(Y,m->getBoundingBox()->getBoundingMax().y);
+				z = MIN(z,m->getBoundingBox()->getBoundingMin().z);
+				Z = MAX(Z,m->getBoundingBox()->getBoundingMax().z);
 			}
 		}
 
-		//double span = MAX(MAX((X-x)/2,(Y-y)/2),(Z-z)/2);
-		//OctreeScene = new Octree(Point((X+x)/2,(Y+y)/2,(Z+z)/2),span);
 		OctreeScene = new Octree(x,X,y,Y,z,Z);
-		cout << OctreeScene->getCenter() << endl;
 		OctreeScene->setMaxLevel(MAX_OCTREE_LEVEL);
+
+		cout << "_________________________________________" << endl;
+		OctreeScene->getBoundingBox().show();
 	}
 
 	void Scene::setMaterial(Objet *o, int id)

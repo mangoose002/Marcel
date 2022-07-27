@@ -55,14 +55,6 @@ namespace Marcel{
 
         float HitProbability;
     public:
-        // Points extremes de la boite englobante
-        double x;
-        double X;
-        double y;
-        double Y;
-        double z;
-        double Z;
-
         Objet();
 
         virtual int    Intersect(Tuple*, Droite*) = 0;
@@ -72,6 +64,7 @@ namespace Marcel{
         virtual Color  getColor(Point*);
         virtual Vector getNormal(Point *,Point *);
         virtual Point  computeUVW(Point *){ return Point(0,0,0); }
+        virtual void   defineBoundingBox() = 0;
 
         // Renvoi le rayon reflechi
         Ray Reflect(Ray*, Point*, Vector*);
@@ -92,6 +85,7 @@ namespace Marcel{
         float  getSurB();
         string getName();
 
+        BoundingBox*   getBoundingBox();
         CullingBox*    getCullingBox();
 
         bool  TestCullingBox  (Droite *);
