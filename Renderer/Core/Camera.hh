@@ -31,10 +31,12 @@ private:
   Camera(Point,Point,double,int,int);
   ~Camera();
 
-  void setResolution(int,int);
   Point getViewPoint(){ return ViewPoint; }
-  
   Point getTarget(){ return Target; }
+  Vector getViewDirection(){ return ViewDirection; }
+
+  void setResolution(int,int);
+  void  setViewPoint(Point v);
   void  setTarget(Point t);
 
   void LaunchRay(Ray *,float,float);

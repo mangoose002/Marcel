@@ -154,7 +154,7 @@ namespace Marcel{
 
 		if (loader->GetCameraCount() == 0 || cameracreated==false){
 			cout << "No camera found, creating one" << endl;
-			camera = new Camera(Point(10, -5, 10), Point(0, 0, 0), 45, ResX, ResY);
+			camera = new Camera(Point(0, 0, 0), Point(0, 0, 0), 45, ResX, ResY); //Will be refined later
 			camera->isGenerated(true);
 		}
 
@@ -183,9 +183,11 @@ namespace Marcel{
 			}
 		}
 		if (loader->GetLightCount() == 0) {
+			cout << "No light found, creating one" << endl;
 			CurrentLight = new Omni();
-			((Omni *)CurrentLight)->setOrigin(Point(50, 50, 50));
+			((Omni *)CurrentLight)->setOrigin(Point(50, 50, 50)); //Will be refined later
 			((Omni *)CurrentLight)->setColor(Color(.75, .75, .75));
+			CurrentLight->isGenerated(true);
 			LightList->push_back(CurrentLight);
 		}
 
@@ -638,8 +640,19 @@ namespace Marcel{
 			cout << "Done." << endl;
 
 			if(camera->isGenerated()){
-				cout << "Setting Camera target" << endl;
+				cout << "Setting Camera" << endl;
+
+				Vector V = OctreeScene->getCenter() - OctreeScene->getBoundingMax();
+				Point O = (OctreeScene->getCenter() - V*2) + OctreeScene->getCenter();
+
+				camera->setViewPoint(O);
 				camera->setTarget(OctreeScene->getCenter());
+			}
+
+			if(LightList->size() == 1){
+				Vector V = OctreeScene->getCenter() - OctreeScene->getBoundingMax();
+				Point O = (OctreeScene->getCenter() - V*2);
+				((Omni *)(LightList->at(0)))->setOrigin(O);
 			}
 
 			cout << "Creating CullingBoxes ";

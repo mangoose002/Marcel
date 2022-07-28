@@ -18,12 +18,14 @@ using namespace std;
 
 namespace Marcel{
 	Omni::Omni(){ 
-		CastShadows = true; 
+		CastShadows  = true; 
+		_isGenerated = false;
 	}
 
 	Omni::Omni(Point P, Color I)
 	{ 
 	  CastShadows = false;
+	  _isGenerated = false;
 	  O=P;
 	  Intensity=I/255;
 	}

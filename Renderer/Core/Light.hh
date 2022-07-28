@@ -15,6 +15,8 @@ namespace Marcel{
    protected:
     Color Intensity;
     Point O;
+    bool  _isGenerated;
+
    public:
     void setColor(Color);
     void setOrigin(Point);
@@ -26,6 +28,9 @@ namespace Marcel{
     double getBlue();
     double getGreen();
     double getRed();
+
+    bool isGenerated()       { return _isGenerated; }
+    void isGenerated(bool i) { _isGenerated = i;    }
 
     bool   CastShadows;
   };

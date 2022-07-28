@@ -61,6 +61,22 @@ namespace Marcel{
 		ViewPlane = Plan(ViewPlaneOrigin, ViewDirection);
 
 	}
+	void Camera::setViewPoint(Point v){
+		ViewPoint = v;
+
+		ViewDirection = (Target - ViewPoint); 
+		ViewDirection.Normalize();
+
+		X             = Vector(ViewDirection.y, -ViewDirection.x,0);
+		Y             = X / ViewDirection;
+
+		X.Normalize();
+		Y.Normalize();
+
+		ViewPlaneOrigin = ViewPoint - ViewDirection * focus;
+		ViewPlane = Plan(ViewPlaneOrigin, ViewDirection);
+
+	}
 
 	void Camera::getViewPlaneCoordinatesFromPoint(Point P, int *x, int *y){
 		Vector OP = P - ViewPlaneOrigin;
