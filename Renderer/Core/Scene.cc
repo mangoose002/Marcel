@@ -58,7 +58,7 @@ namespace Marcel{
 		numThreads         = context->ThreadNumber;
 
 		FrameNumber        = 1;                          // Initialize the Frame number.
-		BackGroundColor    = Color(0, 0, 0);             // Setting the background color.
+		BackGroundColor    = Color(0.2, 0.2, 0.2);       // Setting the background color.
 		AmbientColor       = Color(0.2, 0.2, 0.2);       // Setting the ambient color.
 
 		ObjectList         = new vector<Objet *>;             // Creating the object list.
@@ -96,7 +96,7 @@ namespace Marcel{
 		BlockSize   = 8;
 
 		FrameNumber     = 1;                          // Initialize the Frame number.
-		BackGroundColor = Color(0, 0, 0);             // Setting the background color.
+		BackGroundColor = Color(0.2, 0.2, 0.2);       // Setting the background color.
 		AmbientColor    = Color(0.2, 0.2, 0.2);       // Setting the ambient color.
 
 		ObjectList   = new vector<Objet *>;             // Creating the object list.
@@ -148,6 +148,7 @@ namespace Marcel{
 				                    ResX,
 				                    ResY);
 					cameracreated=true;
+					break;
 				}
 			}
 		}
@@ -643,16 +644,21 @@ namespace Marcel{
 				cout << "Setting Camera" << endl;
 
 				Vector V = OctreeScene->getCenter() - OctreeScene->getBoundingMax();
-				Point O = (OctreeScene->getCenter() - V*2) + OctreeScene->getCenter();
+				Point O = (OctreeScene->getCenter() - V*2);
+				O.z = O.z - V.z;
 
 				camera->setViewPoint(O);
 				camera->setTarget(OctreeScene->getCenter());
 			}
 
 			if(LightList->size() == 1){
-				Vector V = OctreeScene->getCenter() - OctreeScene->getBoundingMax();
-				Point O = (OctreeScene->getCenter() - V*2);
-				((Omni *)(LightList->at(0)))->setOrigin(O);
+				if(LightList->at(0)->isGenerated()){
+                                       cout << "Setting Light" << endl;
+                                       Vector V = OctreeScene->getCenter() - OctreeScene->getBoundingMax();
+                                       Point O = (OctreeScene->getCenter() - V*2);
+                                       O.y = -O.y;
+                                       ((Omni *)(LightList->at(0)))->setOrigin(O);
+                               }
 			}
 
 			cout << "Creating CullingBoxes ";
