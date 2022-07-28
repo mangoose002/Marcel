@@ -40,6 +40,9 @@ struct SceneContext{
     int             ThreadNumber;
     int             isRaycasting;
 
+    bool            listing;
+    unsigned int    cameraidx;
+
     string          hostname;
     int             port;
 };
@@ -74,6 +77,9 @@ protected:
     bool       antialias;
     bool       softshadow;
     bool       isRaycasting;
+
+    bool         listing;
+    unsigned int cameraidx;
 
     vector<Light *>    *LightList;
     vector<Objet *>    *ObjectList;
@@ -131,12 +137,12 @@ public:
     inline bool      is_Raycasting()       { return isRaycasting;     }
     inline int       getBlockSize()        { return BlockSize;        }
     inline int       getThreshold()        { return Seuil;            }
-
-    void CreateCullingBox(Objet*);
-
     vector<Texture*> *getMappingList(void); // Used to link mapping coordinates to loaded textures.
     int               getFrameNumber();
 
+
+    void CreateCullingBox(Objet*);
+    void listCameras(void);
 
     /// Will be called from the main
     void Start();

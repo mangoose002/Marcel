@@ -74,6 +74,8 @@ namespace Marcel{
 		//
 
 		SceneContext *context  = new SceneContext;
+		context->listing            = false;
+		context->cameraidx			= 0;
 
 		context->OutputFileName     = "Marcel.jpg";
 		context->InputFileName      = "Marcel.3ds";
@@ -100,6 +102,8 @@ namespace Marcel{
 		{
 			static struct option long_options[] =
 			{
+				{"list",         no_argument,       0, 'l'},
+				{"cameraidx",    required_argument, 0, 'c'},
 				{"progressive",  no_argument,       0, 'P'},
 				{"softshadow",   no_argument,       0, 'S'},
 				{"mono",         no_argument,       0, '1'},
@@ -121,7 +125,7 @@ namespace Marcel{
 			/* getopt_long stores the option index here. */
 			int option_index = 0;
 
-			c = getopt_long (argc, argv, "t:b:o:i:w:h:p:O:Q:RPS12aH",
+			c = getopt_long (argc, argv, "c:t:b:o:i:w:h:p:O:Q:RPS12aHl",
 			                 long_options, &option_index);
 
 			/* Detect the end of the options. */
@@ -233,13 +237,21 @@ namespace Marcel{
 					context->YResolution = atoi(optarg);
 				}
 				break;
+			
+			case 'c':
+				context->cameraidx=atoi(optarg);
+				break;
+
+			case 'l':
+				context->listing = true;
+				break;
 
 			default:
 				abort ();
 			}
 		}
 
-		if (mode == _LOCAL_MODE_) {
+		if (mode == _LOCAL_MODE_ && context->listing==false) {
 			//context->File       = new Image(context->OutputFileName.c_str(), context->XResolution, context->YResolution);
 			//context->Dispatcher = new RowDispatcher(context->File);
 

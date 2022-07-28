@@ -29,9 +29,11 @@ int main(int argc, char* argv[]){
 	cout << "Running on a system with " << thread::hardware_concurrency() << " cores" << endl;
 
 	SceneContext *context = Utils::ParseCommandLine(argc,argv,_LOCAL_MODE_);
-
 	Scene scene(context);
-	scene.Start();
+	if(context->listing)
+		scene.listCameras();
+	else
+		scene.Start();
 	//Instrumentor::Get().EndSession();
 }
 

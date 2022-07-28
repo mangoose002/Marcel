@@ -66,10 +66,14 @@ namespace Marcel{
 		MapList            = new vector<Texture *>;           // Creating the map list.
 		MaterialList       = new vector<Material *>;          // Creating the material list.
 
+		camera             = NULL;
+
 		Dispatcher         = context->Dispatcher;
 		File               = context->File;
 
 		isRaycasting       = context->isRaycasting;
+		listing			   = context->listing;
+		cameraidx		   = context->cameraidx;
 
 		MAX_LEVEL          = context->MAX_LEVEL;
 		MAX_OCTREE_LEVEL   = context->MAX_OCTREE_LEVEL;
@@ -99,6 +103,8 @@ namespace Marcel{
 		LightList    = new vector<Light *>;             // Creating the light list.
 		MapList      = new vector<Texture *>;           // Creating the map list.
 		MaterialList = new vector<Material *>;          // Creating the material list.
+
+		camera       = NULL;
 
 		// Determine the number of calculation threads to use
 		numThreads = thread::hardware_concurrency();
@@ -131,21 +137,27 @@ namespace Marcel{
 		Polygon   *CurrentObj;
 		Triangle  *triangle;
 
+		bool cameracreated = false;
 		if (loader->GetCameraCount() > 0) {
-			for (int i = 0; i < 1 /*loader->GetCameraCount()*/ ; i++)
-			{
-				lCamera  = loader->GetCamera(i);
-				camera = new Camera(Point((lCamera.GetOrigin()).x, (lCamera.GetOrigin()).y, (lCamera.GetOrigin()).z),
+			for (int i = 0; i < loader->GetCameraCount() ; i++){
+				if(i==cameraidx){
+					lCamera  = loader->GetCamera(i);
+					camera = new Camera(Point((lCamera.GetOrigin()).x, (lCamera.GetOrigin()).y, (lCamera.GetOrigin()).z),
 				                    Point((lCamera.GetTarget()).x, (lCamera.GetTarget()).y, (lCamera.GetTarget()).z),
 				                    lCamera.GetFocus(),
 				                    ResX,
 				                    ResY);
+					cameracreated=true;
+				}
 			}
-		} else {
+		}
+
+		if (loader->GetCameraCount() == 0 || cameracreated==false){
 			cout << "No camera found, creating one" << endl;
 			camera = new Camera(Point(10, -5, 10), Point(0, 0, 0), 45, ResX, ResY);
 			camera->isGenerated(true);
 		}
+
 
 		for (int i = 0; i < loader->GetLightCount(); i++)
 		{
@@ -390,6 +402,30 @@ namespace Marcel{
 		return true;
 	}
 
+	void Scene::listCameras(void){
+		// This function parses 3ds files
+		// This needs to be ran first to ensure that the format
+		// is correctly checked.
+		L3DS *loader = new L3DS();
+		if (!(loader->LoadFile(InputFileName.c_str()))){
+			cerr << "Listing only available on 3DS files" << endl;
+			delete loader;
+			exit(-1);
+		}
+
+		LCamera    lCamera;
+		if(loader->GetCameraCount() == 0){
+			cout << "No camera defined in this scene" << endl;
+			return;
+		}
+		if (loader->GetCameraCount() > 0) {
+			for (int i = 0; i < loader->GetCameraCount() ; i++){
+				lCamera  = loader->GetCamera(i);
+				cout << i << ": " << lCamera.GetName() << endl;
+			}
+		}
+	}
+
 	void Scene::ParseFile(string filename)
 	{
 		auto start = chrono::steady_clock::now();
@@ -426,118 +462,137 @@ namespace Marcel{
 
 	Scene::~Scene()
 	{
-		cout << endl;
-		cout << "Deleting Objects." ;
+		if(!listing){
+			cout << endl;
+			cout << "Deleting Objects." ;
+		}
 
 		Objet *mo;
 		int i = 0;
-		for (int yy = 0; yy < ObjectList->size(); yy++)
-		{
+		for (int yy = 0; yy < ObjectList->size(); yy++){
 			mo = ObjectList->at(yy);
-			i = i % 4;
-			switch (i)
-			{
-			case 0:
-				cout << "/"; cout.flush(); break;
-			case 1:
-				cout << "|"; cout.flush(); break;
-			case 2:
-				cout << "-"; cout.flush(); break;
-			case 3:
-				cout << "\\"; cout.flush(); break;
+			if(!listing){
+				i = i % 4;
+				switch (i)
+				{
+				case 0:
+					cout << "/"; cout.flush(); break;
+				case 1:
+					cout << "|"; cout.flush(); break;
+				case 2:
+					cout << "-"; cout.flush(); break;
+				case 3:
+					cout << "\\"; cout.flush(); break;
+				}
+				cout << "\b"; cout.flush();
 			}
-			i++;
 			if (mo = NULL)
 				delete mo;
-			cout << "\b"; cout.flush();
+			i++;
 		}
-		cout << "\b Done ." << endl;
+		if(!listing){
+			cout << "\b Done ." << endl;
+		}
 		delete ObjectList;                            // Deleting the object list.
 
 		i = 0;
-		cout << "Deleting Lights: " ;
+		if(!listing){
+			cout << "Deleting Lights: " ;
+		}
 
 		Light *ml;
-		for (int yy = 0; yy < LightList->size(); yy++)
-		{
+		for (int yy = 0; yy < LightList->size(); yy++){
 			ml = LightList->at(yy);
-			i = i % 4;
-			switch (i)
-			{
-			case 0:
-				cout << "/"; cout.flush(); break;
-			case 1:
-				cout << "|"; cout.flush(); break;
-			case 2:
-				cout << "-"; cout.flush(); break;
-			case 3:
-				cout << "\\"; cout.flush(); break;
-
+			if(!listing){
+				i = i % 4;
+				switch (i)
+				{
+				case 0:
+					cout << "/"; cout.flush(); break;
+				case 1:
+					cout << "|"; cout.flush(); break;
+				case 2:
+					cout << "-"; cout.flush(); break;
+				case 3:
+					cout << "\\"; cout.flush(); break;
+				}
+				cout << "\b"; cout.flush();
 			}
-			cout << "\b"; cout.flush();
 			if (ml != NULL)
 				delete ml;
 			i++;
 		}
-		cout << "\b Done ." << endl;
+		if(!listing){
+			cout << "\b Done ." << endl;
+		}
 		delete LightList;                             // Deleting the light list.
 
 		i = 0;
-		cout << "Deleting Maps: ";
+		if(!listing){
+			cout << "Deleting Maps: ";
+		}
 		Texture *mm;
 		for (int yy = 0; yy < MapList->size(); yy++)
 		{
 			mm = MapList->at(yy);
-			i = i % 4;
-			switch (i)
-			{
-			case 0:
-				cout << "/"; cout.flush(); break;
-			case 1:
-				cout << "|"; cout.flush(); break;
-			case 2:
-				cout << "-"; cout.flush(); break;
-			case 3:
-				cout << "\\"; cout.flush(); break;
-
+			if(!listing){
+				i = i % 4;
+				switch (i){
+					case 0:
+						cout << "/"; cout.flush(); break;
+					case 1:
+						cout << "|"; cout.flush(); break;
+					case 2:
+						cout << "-"; cout.flush(); break;
+					case 3:
+						cout << "\\"; cout.flush(); break;
+				}
+				cout << "\b"; cout.flush();
+				i++;
 			}
 			if (mm != NULL)
 				delete mm;
-			i++;
-			cout << "\b"; cout.flush();
 		}
-		cout << "\b Done ." << endl;
+		if(!listing){
+			cout << "\b Done ." << endl;
+		}
 		delete MapList;                               // Deleting the map list.
 
 		i = 0;
-		cout << "Deleting Materials: ";
+		if(!listing){
+			cout << "Deleting Materials: ";
+		}
 		Material *mmat;
 		for (int yy = 0; yy < MaterialList->size(); yy++)
 		{
 			mmat = MaterialList->at(yy);
-			i = i % 4;
-			switch (i)
-			{
-			case 0:
-				cout << "/"; cout.flush(); break;
-			case 1:
-				cout << "|"; cout.flush(); break;
-			case 2:
-				cout << "-"; cout.flush(); break;
-			case 3:
-				cout << "\\"; cout.flush(); break;
-
+			if(!listing){
+				i = i % 4;
+				switch (i){
+					case 0:
+						cout << "/"; cout.flush(); break;
+					case 1:
+						cout << "|"; cout.flush(); break;
+					case 2:
+						cout << "-"; cout.flush(); break;
+					case 3:
+						cout << "\\"; cout.flush(); break;
+				}
+				cout << "\b"; cout.flush();
+				i++;
 			}
 			if (mmat != NULL)
 				delete mmat;
-			i++;
-			cout << "\b"; cout.flush();
 		}
-		cout << "\b Done ." << endl;
+		if(!listing){
+			cout << "\b Done ." << endl;
+		}
 		delete MaterialList;                               // Deleting the map list.
 
-		delete File;                                  // Deleting the image buffer.
-		delete camera;
+		if(File!=NULL)
+			delete File;                                  // Deleting the image buffer.
+		if(camera!=NULL)
+			delete camera;
 	}
 
 	void Scene::addObject(Objet *o)                { ObjectList->push_back(o);                      }

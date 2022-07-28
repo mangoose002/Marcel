@@ -45,6 +45,8 @@ namespace Marcel{
 	}
 
 	Plan::~Plan() {
+		delete CullBox;
+		delete BBox;
 	}
 
 	Plan::Plan(Point P, Vector V, Color C, double Dif, double Rfl, double Rfr, double Tr, int Sur, double Bump): Objet()
