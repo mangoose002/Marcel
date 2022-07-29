@@ -198,6 +198,68 @@ namespace Marcel{
 		}
 	}
 
+	bool Octree::Add(Objet *o){
+		if (o == NULL)
+			return false;
+
+		for(int i=0;i<nbElement;i++)
+			if(O[i] == NULL)
+				CreateElement(i);
+
+		if( o->isKindOf() == "Triangle"){
+			OctreePosition positions = positionInChildren((Triangle *)o);
+			
+			if(positions.APosition ==positions.BPosition && positions.BPosition == positions.CPosition){
+				//Everything in one node
+				Add(o,positions.APosition);
+				return true;
+			}
+
+			if(positions.APosition!=positions.BPosition && positions.BPosition!=positions.CPosition){
+				//Tree different nodes
+				if(positions.APosition != -1) Add(o,positions.APosition);
+				if(positions.BPosition != -1) Add(o,positions.BPosition);
+				if(positions.CPosition != -1) Add(o,positions.CPosition);
+				return true;
+			}
+			
+			if(positions.APosition==positions.BPosition && positions.BPosition!=positions.CPosition){
+				if(positions.APosition != -1)  Add(o,positions.APosition);
+				if(positions.CPosition != -1)  Add(o,positions.CPosition);
+				return true;
+			} 
+			if(positions.APosition==positions.CPosition && positions.BPosition!=positions.CPosition){
+				if(positions.APosition != -1)  Add(o,positions.APosition);
+				if(positions.BPosition != -1)  Add(o,positions.BPosition);
+				return true;
+			}
+			if(positions.BPosition==positions.CPosition && positions.APosition!=positions.CPosition){
+				if(positions.APosition != -1)  Add(o,positions.APosition);
+				if(positions.BPosition != -1)  Add(o,positions.BPosition);
+				return true;
+			}
+			positions.Show();
+			return false;
+		}
+
+		int p = CheckObject(o);
+		return Add(o,p);
+	}
+
+	bool Octree::Add(Objet* o, int p){
+		if (p == -1 || Level == MAX_LEVEL || LocalCount > 0){
+			ObjectList->push_back(o);
+			LocalCount++ ;
+			//if (Root != NULL)
+			//	Root->TotalCount++;
+			
+			return true;
+		} else {
+			return O[p]->Add(o);
+		}
+		return true;
+	}
+
 	int Octree::CheckObject(Objet *o){
 		Point _min = o->getBoundingBox()->getBoundingMin();
 		Point _max = o->getBoundingBox()->getBoundingMax();
@@ -211,6 +273,29 @@ namespace Marcel{
 			}
 		}
 		return -1;
+	}
+
+	OctreePosition Octree::positionInChildren(Triangle *T){
+		OctreePosition positions;
+		
+		Point A = T->getA();
+		Point B = T->getB();
+		Point C = T->getC();
+
+		for(int i=0;i<8;i++){
+			if(((Octree *)O[i])->getBoundingBox().contains(A)){
+				positions.APosition = i;	
+			}
+			if(((Octree *)O[i])->getBoundingBox().contains(B)){
+				positions.BPosition = i;	
+			}
+			if(((Octree *)O[i])->getBoundingBox().contains(C)){
+				positions.CPosition = i;	
+			}
+		}
+
+		//positions.Show();
+		return positions;
 	}
 
 	double Octree::getWidth()  { return fabs(BBox.getBoundingMax().x - BBox.getBoundingMin().x); }

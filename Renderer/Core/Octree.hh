@@ -6,6 +6,7 @@
 #include "Core/Droite.hh"
 #include "Core/Tuple.hh"
 #include "Core/Plan.hh"
+#include "Core/Triangle.hh"
 
 namespace Marcel {
 
@@ -22,6 +23,23 @@ namespace Marcel {
 		FAR_TOP_LEFT      = 7,
 	};
 
+	struct OctreePosition{
+		int APosition;
+		int BPosition;
+		int CPosition;
+
+		OctreePosition(){
+			APosition = BPosition = CPosition = -1;
+		}
+
+		void Show(){
+			cout << "----------------" << endl;
+			cout << "A: " << APosition << endl;
+			cout << "B: " << BPosition << endl;
+			cout << "C: " << CPosition << endl;
+		}
+	};
+
 	class Octree : public nTree
 	{
 	private:
@@ -29,6 +47,7 @@ namespace Marcel {
 
 		bool  TestIntersection(Droite *D);
 		int  CheckObject(Objet *);
+		OctreePosition positionInChildren(Triangle *);
 		void CreateElement(int);
 
 	public:
@@ -37,6 +56,9 @@ namespace Marcel {
 		Octree(double, double, double, double, double, double);
 		Octree(Point,double);
 		~Octree();
+
+		bool Add(Objet *);
+		bool Add(Objet *,int);
 
 		int  ComputeLight(Droite *D, double t, double *NS, double *NL, Objet *Ob);
 		void Deduplicate();

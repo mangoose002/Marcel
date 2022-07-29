@@ -332,23 +332,4 @@ namespace Marcel{
 				(P->Distance(&P3) * abn)
 			);
 	}
-
-	OctreePosition Triangle::positionInOctree(Octree *O){
-		OctreePosition positions;
-		
-		for(int i=0;i<8;i++){
-			if(((Octree *)(O->getChild(i)))->getBoundingBox().contains(A)){
-				positions.APosition = i;	
-			}
-			if(((Octree *)(O->getChild(i)))->getBoundingBox().contains(B)){
-				positions.BPosition = i;	
-			}
-			if(((Octree *)(O->getChild(i)))->getBoundingBox().contains(C)){
-				positions.CPosition = i;	
-			}
-		}
-
-		//positions.Show();
-		return positions;
-	}
 }

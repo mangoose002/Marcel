@@ -41,9 +41,8 @@ namespace Marcel{
 
 			void setMaxLevel(int l);
 
-			bool Add(Objet *);
-			bool Add(Objet *,int);
-			//virtual bool Add(Triangle *);
+			virtual bool Add(Objet *) = 0;
+			virtual bool Add(Objet *,int) = 0;
 
 			void Visualize();
 			int Intersect(Droite *D, Tuple *C);

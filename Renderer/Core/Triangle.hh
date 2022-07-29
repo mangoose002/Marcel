@@ -11,23 +11,6 @@
 #include "Matrix.hh"
 #include "Core/Octree.hh"
 
-struct OctreePosition{
-	int APosition;
-	int BPosition;
-	int CPosition;
-
-	OctreePosition(){
-		APosition = BPosition = CPosition = -1;
-	}
-
-	void Show(){
-		cout << "----------------" << endl;
-		cout << "A: " << APosition << endl;
-		cout << "B: " << BPosition << endl;
-		cout << "C: " << CPosition << endl;
-	}
-};
-
 namespace Marcel{
 	class Triangle : public Objet
 	{
@@ -77,15 +60,17 @@ namespace Marcel{
 		void   setShadingNormal(int, Vector);
 		void   setUVCoordinates(int, double, double);
 		void   defineBoundingBox();
+		Point  computeUVW(Point *);
 
 		bool   isTriangle();
 
 		Color  getColor(Point *);
 		Vector getNormal(Point *,Point *);
-		Point  computeUVW(Point *);
-		string isKindOf() { return "Triangle"; }
+		Point  getA() { return A; }
+		Point  getB() { return B; }
+		Point  getC() { return C; }
 
-		OctreePosition positionInOctree(Octree *);
+		string isKindOf() { return "Triangle"; }
 	};
 }
 #endif

@@ -10,7 +10,7 @@ namespace Marcel{
 class QuadTree : public nTree
 {
 private:
-	int xmin; // Coordonnées de l'octree
+	int xmin; // Coordonnï¿½es de l'octree
 	int xmax;
 	int ymin;
 	int ymax;
@@ -23,6 +23,9 @@ public:
 	QuadTree(int, int, QuadTree *);
 	QuadTree(int, int, int, int);
 	~QuadTree();
+
+	bool Add(Objet *);
+	bool Add(Objet *,int);
 
 	double getHeight();
 	double getWidth();

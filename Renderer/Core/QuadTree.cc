@@ -116,6 +116,30 @@ namespace Marcel{
         return -1;
     }
 
+    bool QuadTree::Add(Objet *o){
+		if (o == NULL)
+			return false;
+
+		for(int i=0;i<nbElement;i++)
+			if(O[i] == NULL)
+				CreateElement(i);
+
+		int p = CheckObject(o);
+		return Add(o,p);
+	}
+
+	bool QuadTree::Add(Objet* o, int p){
+		if (p == -1 || Level == MAX_LEVEL){
+			ObjectList->push_back(o);
+			LocalCount++ ;
+			
+			return true;
+		} else {
+			return O[p]->Add(o);
+		}
+		return true;
+	}
+
     double QuadTree::getWidth()  { return abs(xmax - xmin); }
     double QuadTree::getHeight() { return abs(ymax - ymin); }
 }
