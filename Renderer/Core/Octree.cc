@@ -250,9 +250,16 @@ namespace Marcel{
 		if (p == -1 || Level == MAX_LEVEL || LocalCount > 0){
 			ObjectList->push_back(o);
 			LocalCount++ ;
-			//if (Root != NULL)
-			//	Root->TotalCount++;
-			
+			if (Root != NULL)
+				((Octree *)Root)->TotalCount++;
+			for(int i=0;i<nbElement;i++){
+				if(O[i]!=NULL){
+					if(((Octree*)O[i])->LocalCount > 0){
+						cout << ((Octree*)O[i])->LocalCount << endl;
+					}
+				}
+			}
+
 			return true;
 		} else {
 			return O[p]->Add(o);
